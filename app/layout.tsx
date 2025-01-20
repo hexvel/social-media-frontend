@@ -26,7 +26,7 @@ export default function RootLayout({
       >
         <Header />
         <div className="mx-auto flex w-full grow gap-5 p-5">
-          <Sidebar className="sticky top-[5.25rem] hidden h-fit space-y-3 rounded-lg px-3 py-5 shadow-sm sm:block lg:px-5 xl:w-80" />
+          <Sidebar className="sticky top-[5.25rem] hidden space-y-3 rounded-lg px-3 py-5 shadow-sm sm:block lg:px-5 xl:w-80" />
           {children}
         </div>
         <Sidebar className="sticky bottom-0 flex w-full justify-center gap-5 border-t p-3 sm:hidden" />

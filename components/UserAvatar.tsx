@@ -6,7 +6,7 @@ export default function UserAvatar() {
   return (
     <div className="flex flex-col items-center">
       <div className="relative w-[130px] h-[130px]">
-        <div className="absolute inset-0 rounded-full bg-gradient-to-r from-yellow-400 via-red-500 to-purple-600 p-[2px]">
+        <div className="absolute inset-0 rounded-full bg-gradient-to-br from-purple-600 via-red-500 to-yellow-400  p-[2px]">
           <div className="rounded-full bg-black p-1">
             <Image
               src={avatarUrl}
