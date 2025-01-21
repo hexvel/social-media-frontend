@@ -22,9 +22,12 @@ export default function PagesYouLike() {
     },
   ];
   return (
-    <div className="flex flex-col gap-4 mt-4">
+    <div className="flex flex-col gap-2 mt-4">
       {channels.map((channel) => (
-        <div key={channel.title} className="flex items-center gap-x-3">
+        <div
+          key={channel.title}
+          className="flex items-center gap-x-3 text-white/60 hover:bg-secondary-theme hover:text-dark p-2 rounded-md transition-colors cursor-pointer"
+        >
           <Image
             src={channel.image}
             alt={channel.title}
@@ -32,9 +35,7 @@ export default function PagesYouLike() {
             height={38}
             className="rounded-lg h-[38px] w-[38px] object-cover"
           />
-          <span className="text-white/60">
-            {truncateText(channel.title, 20)}
-          </span>
+          <span>{truncateText(channel.title, 20)}</span>
         </div>
       ))}
     </div>
