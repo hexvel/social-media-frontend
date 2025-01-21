@@ -21,7 +21,7 @@ export default {
         secondary: {
           DEFAULT: "hsl(var(--secondary))",
           foreground: "hsl(var(--secondary-foreground))",
-          theme: "#ffd37d",
+          theme: "#9d92f3",
         },
         tertiary: "#d9e4ed",
         card: {

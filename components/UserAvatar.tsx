@@ -27,7 +27,7 @@ export default function UserAvatar({
                 alt="Profile Pic"
                 width={imageSize}
                 height={imageSize}
-                className="rounded-full object-cover"
+                className="rounded-full object-cover select-none"
               />
             </div>
           </div>
@@ -38,7 +38,7 @@ export default function UserAvatar({
           alt="Profile Pic"
           width={imageSize}
           height={imageSize}
-          className="rounded-full object-cover mb-2"
+          className="rounded-full object-cover mb-2 select-none"
         />
       )}
     </div>

@@ -10,23 +10,23 @@ export default function FollowUsers() {
     },
     {
       id: 2,
-      name: "Hexik Ass",
-      username: "@official_hexvel",
+      name: "John Smith",
+      username: "@john_smith",
     },
     {
       id: 3,
-      name: "Hexik Ass",
-      username: "@official_hexvel",
+      name: "Eva Elfi",
+      username: "@eva_fans",
     },
     {
       id: 4,
-      name: "Hexik Ass",
-      username: "@official_hexvel",
+      name: "Brazzers bro",
+      username: "@official_brazzers",
     },
   ];
 
   return (
-    <div className="sticky h-fit top-[5.25rem] bg-primary-theme hidden p-4 w-72 flex-none xl:block lg:w-80 rounded-md">
+    <div className="bg-primary-theme hidden p-4 w-72 flex-none xl:block lg:w-80 rounded-md">
       <div className="text-xl font-bold mb-4">Who to follow</div>
       <div className="flex flex-col gap-4">
         {users.map((user, index) => (
@@ -38,16 +38,16 @@ export default function FollowUsers() {
                 gradientBorder={index % 2 === 0}
               />
               <div>
-                <p className="line-clamp-1 flex items-center gap-x-2 break-all font-medium hover:underline">
+                <p className="line-clamp-1 flex items-center gap-x-2 break-all font-medium cursor-default">
                   {user.name}
                   <VerifiedIcon className="size-5 fill-sky-600" />
                 </p>
-                <p className="line-clamp-1 break-all text-muted-foreground">
+                <p className="line-clamp-1 break-all text-muted-foreground cursor-default">
                   {user.username}
                 </p>
               </div>
             </div>
-            <button className="h-10 px-4 border border-secondary-theme text-secondary-theme border-double rounded-3xl font-medium hover:bg-secondary-theme hover:text-dark transition-colors">
+            <button className="h-10 px-4 border border-secondary-theme text-secondary-theme border-double rounded-3xl font-medium hover:bg-secondary-theme hover:text-dark transition-colors select-none">
               Follow
             </button>
           </div>

@@ -2,6 +2,7 @@ import { truncateText } from "@/lib/utils";
 import Image from "next/image";
 
 export default function PagesYouLike() {
+  // данные придут из бэка, пока тестово списком
   const channels = [
     {
       title: "World of Mountains",
@@ -9,7 +10,7 @@ export default function PagesYouLike() {
     },
     {
       title: "Mountain Life",
-      image: "/profile-photo.webp",
+      image: "/mountain.jpg",
     },
     {
       title: "Mountains Calling in Progress",
@@ -17,27 +18,25 @@ export default function PagesYouLike() {
     },
     {
       title: "Mountaineering",
-      image: "/profile-photo.webp",
+      image: "/mountain.jpg",
     },
   ];
   return (
-    <div>
-      <div className="flex flex-col gap-4 mt-4">
-        {channels.map((channel) => (
-          <div key={channel.title} className="flex items-center gap-x-3">
-            <Image
-              src={channel.image}
-              alt={channel.title}
-              width={38}
-              height={38}
-              className="rounded-full"
-            />
-            <span className="text-white/60">
-              {truncateText(channel.title, 20)}
-            </span>
-          </div>
-        ))}
-      </div>
+    <div className="flex flex-col gap-4 mt-4">
+      {channels.map((channel) => (
+        <div key={channel.title} className="flex items-center gap-x-3">
+          <Image
+            src={channel.image}
+            alt={channel.title}
+            width={38}
+            height={38}
+            className="rounded-lg h-[38px] w-[38px] object-cover"
+          />
+          <span className="text-white/60">
+            {truncateText(channel.title, 20)}
+          </span>
+        </div>
+      ))}
     </div>
   );
 }

@@ -15,7 +15,7 @@ export const avatarUrl =
 export default function Header() {
   return (
     <header className="hidden xl:flex w-full justify-between py-4 px-8 bg-primary-theme/60">
-      <div className="flex items-center gap-x-4">
+      <div className="flex items-center gap-x-2">
         <div className="bg-secondary-theme p-3 rounded-md cursor-pointer active:scale-95 transition-transform">
           <PencilRulerIcon size={24} color="black" />
         </div>
@@ -42,7 +42,7 @@ export default function Header() {
           ))}
         </ul>
       </nav>
-      <div className="flex items-center gap-x-6">
+      <div className="flex items-center gap-x-4">
         <div className="bg-primary-theme p-3 rounded-md cursor-pointer active:scale-95 transition-transform shadow-lg">
           <MessageSquareTextIcon size={24} color="#6f7376" />
         </div>
