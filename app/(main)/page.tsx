@@ -1,18 +1,49 @@
+import { avatarUrl } from "@/components/Header";
+import Post from "@/components/Post";
 import RightSidebar from "@/components/RightSidebar";
 
 export default function HomePage() {
+  const posts = [
+    {
+      content:
+        "Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto, modi perspiciatis. Qui sed officiis eligendi hic totam aut aliquid voluptate dolore molestias quod consequatur aliquam quos voluptatibus aspernatur, reprehenderit ut.",
+      image: "/profile-photo.webp",
+      createdAt: new Date(),
+      author: {
+        firstName: "Hexik",
+        lastName: "Ass",
+        avatarUrl,
+      },
+    },
+    {
+      content:
+        "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Omnis, laborum assumenda perspiciatis repellendus quisquam nisi culpa unde officiis temporibus voluptates, minus ipsam quis provident. Qui aliquam pariatur corporis! Culpa voluptates nisi ut sapiente eos amet temporibus tenetur debitis veritatis deserunt, cum aut ea recusandae dolores, nemo deleniti voluptatibus doloribus totam illo similique? Vero quaerat aut alias, nulla tempora adipisci ipsa impedit amet architecto nihil fuga soluta doloribus! Debitis magni ipsam tempore veniam eveniet necessitatibus non, iusto aliquid, earum vel doloremque. Aperiam dicta est voluptatum vel nam, dolorum earum illo commodi rerum blanditiis eum molestias obcaecati harum non illum eveniet ab mollitia, suscipit doloribus tenetur numquam quasi optio voluptas. Perferendis, modi! Omnis perspiciatis possimus minus obcaecati, porro quae, perferendis accusamus quisquam explicabo ipsa voluptatum deserunt quam illum? Minima obcaecati quos voluptatum ipsa at debitis nostrum aut quia explicabo! Necessitatibus magni praesentium illo id inventore temporibus cupiditate suscipit maiores quas delectus blanditiis quibusdam enim, tenetur cum quia nemo. Culpa, repudiandae iure architecto adipisci ex ad labore beatae excepturi in possimus reprehenderit? Sit eveniet facere, repellendus modi dolorem soluta facilis numquam tempora voluptatem corporis dignissimos sequi officia assumenda nemo quibusdam aperiam delectus aliquam praesentium asperiores? Asperiores perspiciatis id, esse nam maiores ab laudantium.",
+      image: "/profile-photo.webp",
+      createdAt: new Date(),
+      author: {
+        firstName: "Hexik",
+        lastName: "Ass",
+        avatarUrl,
+      },
+    },
+    {
+      content:
+        "Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto, modi perspiciatis. Qui sed officiis eligendi hic totam aut aliquid voluptate dolore molestias quod consequatur aliquam quos voluptatibus aspernatur, reprehenderit ut.",
+      image: "/profile-photo.webp",
+      createdAt: new Date(),
+      author: {
+        firstName: "Hexik",
+        lastName: "Ass",
+        avatarUrl,
+      },
+    },
+  ];
   return (
     <main className="flex w-full min-w-0 gap-5">
-      <div className="w-full min-w-0 space-y-5">
-        <h1 className="text-4xl font-bold">
-          Welcome to <span className="text-secondary-theme">HEXBook</span>!
-        </h1>
-        <p>
-          This is the home page. You can explore the various features of
-          HexBook, such as creating posts, following other users, and checking
-          the latest news. Please note that this is a demo version of HexBook,
-          and the features and functionalities may not be fully implemented.
-        </p>
+      <div className="flex flex-col items-center w-full min-w-0 space-y-5">
+        {posts.map((post, index) => (
+          <Post key={index} {...post} />
+        ))}
       </div>
       <RightSidebar />
     </main>

@@ -12,3 +12,9 @@ export function truncateText(text: string, maxLength: number): string {
 
   return text.slice(0, maxLength - 3) + "...";
 }
+
+export const formatter = new Intl.DateTimeFormat("ru-RU", {
+  day: "numeric",
+  month: "long",
+  year: "numeric",
+});
