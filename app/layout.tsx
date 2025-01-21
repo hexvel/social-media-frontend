@@ -24,12 +24,14 @@ export default function RootLayout({
       <body
         className={`${robotoMono.className} antialiased bg-dark text-white`}
       >
-        <Header />
-        <div className="mx-auto flex w-full grow gap-5 p-5">
-          <Sidebar className="sticky top-[5.25rem] hidden space-y-3 rounded-lg px-3 py-5 shadow-sm sm:block lg:px-5 xl:w-80" />
-          {children}
+        <div className="flex min-h-screen flex-col">
+          <Header />
+          <div className="mx-auto flex w-full grow gap-5 p-5">
+            <Sidebar className="sticky top-[5.25rem] hidden space-y-3 rounded-lg px-3 py-5 shadow-sm sm:block" />
+            {children}
+          </div>
+          <Sidebar className="sticky bottom-0 flex w-full justify-center gap-5 sm:hidden" />
         </div>
-        <Sidebar className="sticky bottom-0 flex w-full justify-center gap-5 border-t p-3 sm:hidden" />
       </body>
     </html>
   );

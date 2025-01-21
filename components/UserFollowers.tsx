@@ -6,7 +6,7 @@ export default function UserFollowers() {
   ];
 
   return (
-    <div className="grid grid-cols-3 gap-4 bg-primary-theme p-4 rounded-md text-white text-center">
+    <div className="hidden sm:grid grid-cols-3 gap-4 bg-primary-theme p-4 rounded-md text-white text-center">
       {stats.map((stat, index) => (
         <div key={index}>
           <div className="text-lg font-medium">{stat.value}</div>

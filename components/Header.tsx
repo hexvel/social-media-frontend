@@ -14,7 +14,7 @@ export const avatarUrl =
 
 export default function Header() {
   return (
-    <header className="w-full flex justify-between py-4 px-8 bg-primary-theme/60">
+    <header className="hidden xl:flex w-full justify-between py-4 px-8 bg-primary-theme/60">
       <div className="flex items-center gap-x-4">
         <div className="bg-secondary-theme p-3 rounded-md cursor-pointer active:scale-95 transition-transform">
           <PencilRulerIcon size={24} color="black" />
