@@ -2,17 +2,19 @@
 
 import UserAvatar from "@/components/UserAvatar";
 import { cn, formatter } from "@/lib/utils";
+import { Media } from "@/types/media.type";
 import {
   BadgeCheckIcon,
   Heart,
-  MessageSquareReply,
+  MessageSquare,
   SendToBackIcon,
 } from "lucide-react";
 import { useState } from "react";
+import { MediaPreviews } from "./media/MediaPreview";
 
 interface IPost {
   content: string;
-  image?: string;
+  images?: Media[];
   createdAt: Date;
   author: {
     firstName: string;
@@ -20,7 +22,7 @@ interface IPost {
   };
 }
 
-export default function Post({ content, createdAt, author }: IPost) {
+export default function Post({ content, images, createdAt, author }: IPost) {
   const [isLiked, setIsLiked] = useState(false);
   const [likesCount, setLikesCount] = useState(1000); // для теста
 
@@ -31,7 +33,7 @@ export default function Post({ content, createdAt, author }: IPost) {
   const formattedDate = formatter.format(createdAt);
 
   return (
-    <div className="w-full flex flex-col items-start p-4 bg-primary-theme rounded-md">
+    <div className="w-full space-y-3 flex flex-col items-center p-4 bg-primary-theme rounded-md">
       <div className="w-full flex justify-between items-center">
         <div className="flex items-center text-lg gap-x-3">
           <UserAvatar size={60} gradientBorder />
@@ -48,10 +50,15 @@ export default function Post({ content, createdAt, author }: IPost) {
           </div>
         </div>
       </div>
-      <hr className="my-4 h-[2px] w-full bg-dark border-none" />
+      {!!images?.length && (
+        <MediaPreviews
+          attachments={images}
+          onClick={() => {}}
+          onImageClick={() => {}}
+        />
+      )}
       <p>{content}</p>
-      <hr className="my-4 h-[2px] w-full bg-dark border-none" />
-      <div className="w-full flex items-center justify-between">
+      <div className="mt-4 w-full flex items-center justify-between">
         <div className="flex items-center gap-x-6">
           <div
             className="flex items-center gap-x-2 cursor-pointer"
@@ -66,7 +73,7 @@ export default function Post({ content, createdAt, author }: IPost) {
             </span>
           </div>
           <div className="flex items-center gap-x-2 cursor-pointer">
-            <MessageSquareReply color="#6f7376" />
+            <MessageSquare color="#6f7376" />
             <span className="text-[#6f7376]">1k</span>
           </div>
         </div>
