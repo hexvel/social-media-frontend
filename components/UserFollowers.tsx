@@ -10,7 +10,7 @@ export default function UserFollowers() {
       {stats.map((stat, index) => (
         <div key={index}>
           <div className="text-lg font-medium">{stat.value}</div>
-          <div className="text-sm">{stat.label}</div>
+          <div className="text-sm text-muted-foreground">{stat.label}</div>
         </div>
       ))}
     </div>

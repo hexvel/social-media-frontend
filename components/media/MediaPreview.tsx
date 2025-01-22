@@ -45,18 +45,28 @@ interface MediaPreviewProps {
 }
 
 const MediaPreview = ({ media, onClick }: MediaPreviewProps) => {
-  if (media.type === "IMAGE") {
-    return (
-      <Image
-        src={media.url}
-        alt="Attachment"
-        width={500}
-        height={500}
-        className="mx-auto size-fit max-h-[30rem] cursor-pointer select-none rounded-xl"
-        onClick={() => onClick(media.url)}
-      />
-    );
-  }
+  //   if (media.type === "IMAGE") {
+  //     return (
+  //       <Image
+  //         src={`http://localhost:5000/${media.url}`}
+  //         alt="Attachment"
+  //         width={500}
+  //         height={500}
+  //         className="mx-auto size-fit max-h-[30rem] cursor-pointer select-none rounded-xl"
+  //         onClick={() => onClick(media.url)}
+  //       />
+  //     );
+  //   }
 
-  return <p className="text-destructive">Unsupported attachment</p>;
+  //   return <p className="text-destructive">Unsupported attachment</p>;
+  return (
+    <Image
+      src={`http://localhost:5000/${media.url}`}
+      alt="Attachment"
+      width={500}
+      height={500}
+      className="mx-auto size-fit max-h-[30rem] cursor-pointer select-none rounded-xl"
+      onClick={() => onClick(media.url)}
+    />
+  );
 };

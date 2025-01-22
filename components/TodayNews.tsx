@@ -16,20 +16,6 @@ export default function TodayNews() {
       image: "/mountain.jpg",
       date: "2h",
     },
-
-    {
-      title:
-        "Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores, modi.",
-      image: "/mountain.jpg",
-      date: "2h",
-    },
-
-    {
-      title:
-        "Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores, modi.",
-      image: "/mountain.jpg",
-      date: "2h",
-    },
   ];
 
   return (

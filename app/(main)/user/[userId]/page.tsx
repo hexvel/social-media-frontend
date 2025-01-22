@@ -1,4 +1,4 @@
-import { USER } from "@/data/fate.data";
+import { USER } from "@/data/fake.data";
 
 interface IProfileParams {
   params: {

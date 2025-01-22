@@ -2,7 +2,7 @@
 
 import UserAvatar from "@/components/UserAvatar";
 import { cn, formatter } from "@/lib/utils";
-import { Media } from "@/types/media.type";
+import { IPost } from "@/types/post.type";
 import {
   BadgeCheckIcon,
   Heart,
@@ -15,18 +15,7 @@ import { useCallback, useState } from "react";
 import FullScreenImage from "./media/FullScreenImage";
 import { MediaPreviews } from "./media/MediaPreview";
 
-interface IPost {
-  content: string;
-  images?: Media[];
-  createdAt: Date;
-  author: {
-    id: number;
-    firstName: string;
-    lastName: string;
-  };
-}
-
-export default function Post({ content, images, createdAt, author }: IPost) {
+export default function Post({ content, photos, createdAt, author }: IPost) {
   const [isLiked, setIsLiked] = useState(false);
   const [likesCount, setLikesCount] = useState(1000); // для теста
   const [fullScreenImage, setFullScreenImage] = useState<string | null>(null);
@@ -65,9 +54,9 @@ export default function Post({ content, images, createdAt, author }: IPost) {
           <MoreHorizontalIcon className="text-muted-foreground" />
         </div>
       </div>
-      {!!images?.length && (
+      {!!photos?.length && (
         <MediaPreviews
-          attachments={images}
+          attachments={photos}
           onClick={() => {}}
           onImageClick={handleImageClick}
         />
