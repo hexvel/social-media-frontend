@@ -10,7 +10,9 @@ import {
   MoreHorizontalIcon,
   SendToBackIcon,
 } from "lucide-react";
-import { useState } from "react";
+import Link from "next/link";
+import { useCallback, useState } from "react";
+import FullScreenImage from "./media/FullScreenImage";
 import { MediaPreviews } from "./media/MediaPreview";
 
 interface IPost {
@@ -18,6 +20,7 @@ interface IPost {
   images?: Media[];
   createdAt: Date;
   author: {
+    id: number;
     firstName: string;
     lastName: string;
   };
@@ -26,6 +29,11 @@ interface IPost {
 export default function Post({ content, images, createdAt, author }: IPost) {
   const [isLiked, setIsLiked] = useState(false);
   const [likesCount, setLikesCount] = useState(1000); // для теста
+  const [fullScreenImage, setFullScreenImage] = useState<string | null>(null);
+
+  const handleImageClick = useCallback((url: string) => {
+    setFullScreenImage(url);
+  }, []);
 
   const handleLikeClick = () => {
     setIsLiked((prev) => !prev);
@@ -36,13 +44,16 @@ export default function Post({ content, images, createdAt, author }: IPost) {
   return (
     <div className="w-full space-y-3 flex flex-col items-center p-4 bg-primary-theme rounded-md">
       <div className="w-full flex justify-between items-center">
-        <div className="flex items-center text-lg gap-x-3">
+        <div className="flex items-center gap-x-3">
           <UserAvatar size={60} gradientBorder />
           <div className="flex flex-col">
             <div className="flex items-center gap-x-2">
-              <span className="cursor-pointer">
+              <Link
+                href={`/user/${author.id}`}
+                className="flex items-center gap-x-2 hover:underline"
+              >
                 {author.firstName} {author.lastName}
-              </span>
+              </Link>
               <BadgeCheckIcon size={20} className="fill-sky-600" />
             </div>
             <span className="text-sm text-muted-foreground">
@@ -58,7 +69,7 @@ export default function Post({ content, images, createdAt, author }: IPost) {
         <MediaPreviews
           attachments={images}
           onClick={() => {}}
-          onImageClick={() => {}}
+          onImageClick={handleImageClick}
         />
       )}
       <p>{content}</p>
@@ -83,6 +94,12 @@ export default function Post({ content, images, createdAt, author }: IPost) {
         </div>
         <SendToBackIcon color="#6f7376" className="cursor-pointer" />
       </div>
+      {fullScreenImage && (
+        <FullScreenImage
+          url={fullScreenImage}
+          onClose={() => setFullScreenImage(null)}
+        />
+      )}
     </div>
   );
 }

@@ -1,3 +1,5 @@
+import { USER } from "@/data/fate.data";
+
 interface IProfileParams {
   params: {
     userId: number;
@@ -7,5 +9,10 @@ interface IProfileParams {
 export default async function ProfilePage({
   params: { userId },
 }: IProfileParams) {
-  return <div>{userId}</div>;
+  const user = USER[1];
+  return (
+    <div>
+      {user.firstName} {user.lastName}
+    </div>
+  );
 }
