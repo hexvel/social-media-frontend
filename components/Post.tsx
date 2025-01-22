@@ -7,6 +7,7 @@ import {
   BadgeCheckIcon,
   Heart,
   MessageSquare,
+  MoreHorizontalIcon,
   SendToBackIcon,
 } from "lucide-react";
 import { useState } from "react";
@@ -48,6 +49,9 @@ export default function Post({ content, images, createdAt, author }: IPost) {
               {formattedDate}
             </span>
           </div>
+        </div>
+        <div className="p-2 hover:bg-dark cursor-pointer rounded-full transition-colors">
+          <MoreHorizontalIcon className="text-muted-foreground" />
         </div>
       </div>
       {!!images?.length && (
