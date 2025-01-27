@@ -11,7 +11,7 @@ export default function HomePage() {
       content:
         "Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto, modi perspiciatis. Qui sed officiis eligendi hic totam aut aliquid voluptate dolore molestias quod consequatur aliquam quos voluptatibus aspernatur, reprehenderit ut.",
       createdAt: new Date(),
-      images: [
+      photos: [
         {
           id: "1",
           type: "IMAGE",
@@ -39,7 +39,7 @@ export default function HomePage() {
     {
       content:
         "Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto, modi perspiciatis. Qui sed officiis eligendi hic totam aut aliquid voluptate dolore molestias quod consequatur aliquam quos voluptatibus aspernatur, reprehenderit ut.",
-      images: [
+      photos: [
         { id: "2", type: "IMAGE", url: "/profile-photo.webp" },
       ] as Media[],
       createdAt: new Date(),

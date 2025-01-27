@@ -6,9 +6,7 @@ interface IProfileParams {
   };
 }
 
-export default async function ProfilePage({
-  params: { userId },
-}: IProfileParams) {
+export default async function ProfilePage() {
   const user = USER[1];
   return (
     <div>

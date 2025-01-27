@@ -65,7 +65,7 @@ export default function Post({ content, photos, createdAt, author }: IPost) {
       <div className="mt-4 w-full flex items-center justify-between">
         <div className="flex items-center gap-x-6">
           <div
-            className="flex items-center gap-x-2 cursor-pointer"
+            className="flex items-center gap-x-2 cursor-pointer select-none"
             onClick={handleLikeClick}
           >
             <Heart
