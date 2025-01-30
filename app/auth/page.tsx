@@ -1,3 +1,6 @@
+import { useRegisterUserMutation } from '@/store/api/user.api'
+import { useAppDispatch } from '@/store/hooks'
+
 export default function AuthPage() {
   return (
     <div className="text-center">
@@ -6,3 +9,7 @@ export default function AuthPage() {
     </div>
   );
 }
+
+// useRegisterUserMutation().then((response) => {
+//   useAppDispatch()
+// })
