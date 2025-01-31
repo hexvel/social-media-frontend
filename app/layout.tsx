@@ -1,7 +1,7 @@
+import { ReduxProvider } from "@/components/ReduxProvider";
 import type { Metadata } from "next";
 import { Roboto } from "next/font/google";
 import "./globals.css";
-import { ReduxProvider } from '@/components/ReduxProvider';
 
 const robotoMono = Roboto({
   weight: ["300", "400", "500"],
@@ -13,7 +13,7 @@ export const metadata: Metadata = {
   description: "Social Network",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
@@ -23,9 +23,7 @@ export default function RootLayout({
       <body
         className={`${robotoMono.className} antialiased bg-dark text-white`}
       >
-        <ReduxProvider>
-          {children}
-        </ReduxProvider>
+        <ReduxProvider>{children}</ReduxProvider>
       </body>
     </html>
   );
