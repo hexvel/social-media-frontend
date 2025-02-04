@@ -18,3 +18,18 @@ export const formatter = new Intl.DateTimeFormat("ru-RU", {
   month: "long",
   year: "numeric",
 });
+
+interface ApiError {
+  data: {
+    message: string;
+  };
+}
+
+export function isErrorWithMessage(error: unknown): error is ApiError {
+  return (
+    typeof error === "object" &&
+    error !== null &&
+    "data" in error &&
+    typeof (error as any).data.message === "string"
+  );
+}

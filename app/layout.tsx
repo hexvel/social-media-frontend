@@ -1,6 +1,8 @@
-import { ReduxProvider } from "@/components/ReduxProvider";
+import { ReduxProvider } from "@/components/providers/ReduxProvider";
+import { Toaster } from "@/components/ui/toaster";
 import type { Metadata } from "next";
 import { Roboto } from "next/font/google";
+import { ReactNode } from "react";
 import "./globals.css";
 
 const robotoMono = Roboto({
@@ -16,14 +18,18 @@ export const metadata: Metadata = {
 export default async function RootLayout({
   children,
 }: Readonly<{
-  children: React.ReactNode;
+  children: ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang='en'>
       <body
         className={`${robotoMono.className} antialiased bg-dark text-white`}
+        suppressHydrationWarning
       >
-        <ReduxProvider>{children}</ReduxProvider>
+        <ReduxProvider>
+          {children}
+          <Toaster />
+        </ReduxProvider>
       </body>
     </html>
   );
