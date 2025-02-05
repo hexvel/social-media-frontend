@@ -10,8 +10,6 @@ export const PostContent = ({ postId }: { postId: string }) => {
   if (isLoading) return <Loader />;
   if (!data) return <div>No posts found</div>;
 
-  console.log(data);
-
   return (
     <div className='w-full flex flex-col gap-y-4'>
       <Post key={data.id} {...data} createdAt={new Date(data.createdAt)} />
