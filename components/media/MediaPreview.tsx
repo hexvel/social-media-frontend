@@ -17,21 +17,21 @@ export const MediaPreviews = ({
 }: MediaPreviewsProps) => {
   const renderPreviews = useMemo(
     () =>
-      attachments.map((attachment) => (
+      attachments.map(attachment => (
         <MediaPreview
           key={attachment.id}
           media={attachment}
           onClick={onImageClick}
         />
       )),
-    [attachments, onImageClick]
+    [attachments, onImageClick],
   );
 
   return (
     <div
       className={cn(
         "flex flex-col gap-3",
-        attachments.length > 1 && "sm:grid sm:grid-cols-2"
+        attachments.length > 1 && "sm:grid sm:grid-cols-2",
       )}
     >
       {renderPreviews}
@@ -47,16 +47,18 @@ interface MediaPreviewProps {
 const MediaPreview = ({ media, onClick }: MediaPreviewProps) => {
   if (media.type === "IMAGE") {
     return (
-      <Image
-        src={media.url}
-        alt="Attachment"
-        width={500}
-        height={500}
-        className="mx-auto size-fit max-h-[30rem] cursor-pointer select-none rounded-xl"
-        onClick={() => onClick(media.url)}
-      />
+      <div className='relative aspect-[16/10] w-full overflow-hidden rounded-xl'>
+        <Image
+          src={media.url}
+          alt='Attachment'
+          fill
+          className='cursor-pointer select-none object-cover transition-transform hover:scale-105'
+          onClick={() => onClick(media.url)}
+          sizes='(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw'
+        />
+      </div>
     );
   }
 
-  return <p className="text-destructive">Unsupported attachment</p>;
+  return <p className='text-destructive'>Unsupported attachment</p>;
 };

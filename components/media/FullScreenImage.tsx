@@ -2,7 +2,7 @@
 
 import { X } from "lucide-react";
 import Image from "next/image";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 interface FullScreenImageProps {
   url: string;
@@ -16,6 +16,13 @@ export default function FullScreenImage({
   const [loaded, setLoaded] = useState(false);
   const [closing, setClosing] = useState(false);
 
+  useEffect(() => {
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.body.style.overflow = "unset";
+    };
+  }, []);
+
   const handleClose = () => {
     setClosing(true);
     setTimeout(onClose, 500);
@@ -23,27 +30,33 @@ export default function FullScreenImage({
 
   return (
     <div
-      className={`fixed inset-0 z-[55555] flex items-center justify-center bg-black bg-opacity-75 transition-opacity duration-500 ${
+      className={`fixed inset-0 z-[55555] flex items-center justify-center backdrop-blur-md transition-opacity duration-500 ${
         loaded && !closing ? "opacity-100" : "opacity-0"
       }`}
       onClick={handleClose}
     >
+      <div className='absolute inset-0 bg-black/60' />
       <div
-        className={`pointer-events-none relative flex h-full max-h-screen w-full max-w-screen-lg transform select-none items-center justify-center transition-transform duration-300 ease-in-out ${
+        className={`pointer-events-none relative flex h-full w-full items-center justify-center p-4 transition-transform duration-300 ease-in-out ${
           loaded && !closing ? "scale-100" : "scale-0"
         }`}
       >
         <Image
           src={url}
-          alt="Full Screen"
-          width={500}
-          height={500}
-          className="rounded-2xl object-cover"
+          alt='Full Screen'
+          fill
+          className='object-contain'
+          sizes='(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 70vw'
+          quality={100}
+          priority
           onLoadingComplete={() => setLoaded(true)}
         />
         <button
-          onClick={handleClose}
-          className="absolute right-4 top-4 rounded-full bg-black bg-opacity-50 p-2text-white"
+          onClick={e => {
+            e.stopPropagation();
+            handleClose();
+          }}
+          className='absolute right-6 top-6 z-10 rounded-full bg-black/50 p-2 text-white transition-colors hover:bg-black/70 pointer-events-auto'
         >
           <X />
         </button>

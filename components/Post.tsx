@@ -11,6 +11,7 @@ import {
   SendToBackIcon,
 } from "lucide-react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useCallback, useState } from "react";
 import FullScreenImage from "./media/FullScreenImage";
 import { MediaPreviews } from "./media/MediaPreview";
@@ -19,6 +20,7 @@ export default function Post({ content, photos, createdAt, author }: IPost) {
   const [isLiked, setIsLiked] = useState(false);
   const [likesCount, setLikesCount] = useState(1000);
   const [fullScreenImage, setFullScreenImage] = useState<string | null>(null);
+  const router = useRouter();
 
   const handleImageClick = useCallback((url: string) => {
     setFullScreenImage(url);
@@ -46,7 +48,12 @@ export default function Post({ content, photos, createdAt, author }: IPost) {
               </Link>
               <BadgeCheckIcon size={20} className='fill-sky-600' />
             </div>
-            <span className='text-sm text-muted-foreground'>
+            <span
+              className='text-sm text-muted-foreground cursor-pointer hover:underline'
+              onClick={() => {
+                router.push(`/posts/${author.id}`);
+              }}
+            >
               {formattedDate}
             </span>
           </div>

@@ -12,7 +12,10 @@ const robotoMono = Roboto({
 });
 
 export const metadata: Metadata = {
-  title: "HexBook",
+  title: {
+    template: "HexBook | %s",
+    default: "HexBook",
+  },
   description: "Social Network",
 };
 

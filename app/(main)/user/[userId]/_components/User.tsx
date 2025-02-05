@@ -2,6 +2,7 @@
 
 import Loader from "@/components/Loader";
 import { useGetUserQuery } from "@/services/user.service";
+
 export const User = ({ userId }: { userId: string }) => {
   const { data, isLoading } = useGetUserQuery(userId);
 
