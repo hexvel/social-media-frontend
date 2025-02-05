@@ -1,3 +1,3 @@
-export default function page() {
-  return <div>page</div>;
+export default function PhotosPage() {
+  return <div>PhotosPage</div>;
 }

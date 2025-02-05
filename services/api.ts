@@ -15,11 +15,23 @@ const baseQuery = fetchBaseQuery({
   },
 });
 
-const baseQueryWithReauth = retry(baseQuery, { maxRetries: 1 });
+const baseQueryWithReauth = async (args: any, api: any, extraOptions: any) => {
+  const result = await baseQuery(args, api, extraOptions);
+
+  if (result?.error?.status === 401) {
+    localStorage.removeItem("accessToken");
+    await fetch("/api/refresh", { method: "POST" });
+    window.location.href = "/auth/login";
+  }
+
+  return result;
+};
 
 export const api = createApi({
   reducerPath: "splitApi",
-  baseQuery: baseQueryWithReauth,
-  refetchOnMountOrArgChange: true,
+  baseQuery: retry(baseQueryWithReauth, { maxRetries: 1 }),
+  refetchOnMountOrArgChange: false,
+  keepUnusedDataFor: 600,
+  tagTypes: ["Post", "User", "Comment", "Profile"],
   endpoints: () => ({}),
 });

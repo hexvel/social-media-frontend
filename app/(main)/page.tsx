@@ -8,6 +8,7 @@ import { Media } from "@/types/media.type";
 export default function HomePage() {
   const posts = [
     {
+      id: 1,
       content:
         "Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto, modi perspiciatis. Qui sed officiis eligendi hic totam aut aliquid voluptate dolore molestias quod consequatur aliquam quos voluptatibus aspernatur, reprehenderit ut.",
       createdAt: new Date(),
@@ -26,6 +27,7 @@ export default function HomePage() {
       },
     },
     {
+      id: 2,
       content:
         "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Omnis, laborum assumenda perspiciatis repellendus quisquam nisi culpa unde officiis temporibus voluptates, minus ipsam quis provident. Qui aliquam pariatur corporis! Culpa voluptates nisi ut sapiente eos amet temporibus tenetur debitis veritatis deserunt, cum aut ea recusandae dolores, nemo deleniti voluptatibus doloribus totam illo similique? Vero quaerat aut alias, nulla tempora adipisci ipsa impedit amet architecto nihil fuga soluta doloribus! Debitis magni ipsam tempore veniam eveniet necessitatibus non, iusto aliquid, earum vel doloremque.",
       createdAt: new Date(),
@@ -37,6 +39,7 @@ export default function HomePage() {
       },
     },
     {
+      id: 3,
       content:
         "Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto, modi perspiciatis. Qui sed officiis eligendi hic totam aut aliquid voluptate dolore molestias quod consequatur aliquam quos voluptatibus aspernatur, reprehenderit ut.",
       photos: [

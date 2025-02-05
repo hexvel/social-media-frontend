@@ -10,7 +10,30 @@ export const userApi = api.injectEndpoints({
         params: { owner: data },
       }),
     }),
+    getProfile: builder.query({
+      query: () => "/profile",
+      keepUnusedDataFor: 1800,
+      providesTags: ["Profile"],
+    }),
+    getUsers: builder.query({
+      query: params => ({
+        url: "/users",
+        params,
+      }),
+      keepUnusedDataFor: 600,
+      providesTags: result =>
+        result
+          ? [
+              ...result.map(({ id }: { id: number | string }) => ({
+                type: "User" as const,
+                id,
+              })),
+              { type: "User", id: "LIST" },
+            ]
+          : [{ type: "User", id: "LIST" }],
+    }),
   }),
+  overrideExisting: false,
 });
 
 export const { useGetUserQuery } = userApi;

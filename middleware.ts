@@ -1,34 +1,6 @@
 import type { NextRequest } from "next/server";
 import { NextResponse } from "next/server";
 
-async function checkRefreshToken(refreshToken: string) {
-  if (!refreshToken) {
-    return null;
-  }
-
-  try {
-    const response = await fetch(
-      `${process.env.NEXT_PUBLIC_API_URL}/auth/refresh`,
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Refresh ${refreshToken}`,
-        },
-      },
-    );
-
-    if (!response.ok) {
-      return null;
-    }
-
-    const data = await response.json();
-    return data;
-  } catch (error) {
-    return null;
-  }
-}
-
 export async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
@@ -43,19 +15,23 @@ export async function middleware(request: NextRequest) {
   }
 
   if (refreshToken && !isPublicRoute && !accessToken) {
-    const newTokens = await checkRefreshToken(refreshToken);
+    const newTokens = await fetch(
+      `${request.nextUrl.origin}/api/refresh?refreshToken=${refreshToken}`,
+    );
 
-    if (newTokens) {
+    const data = await newTokens.json();
+
+    if (data) {
       const response = NextResponse.next();
-      response.cookies.set("refreshToken", newTokens.refreshToken, {
+      response.cookies.set("refreshToken", data.refreshToken, {
         httpOnly: true,
         secure: process.env.NODE_ENV === "production",
         sameSite: "lax",
         path: "/",
       });
 
-      if (newTokens.accessToken) {
-        response.cookies.set("accessToken", newTokens.accessToken, {
+      if (data.accessToken) {
+        response.cookies.set("accessToken", data.accessToken, {
           httpOnly: true,
           secure: process.env.NODE_ENV === "production",
           sameSite: "lax",

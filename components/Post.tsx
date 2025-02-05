@@ -17,7 +17,7 @@ import { MediaPreviews } from "./media/MediaPreview";
 
 export default function Post({ content, photos, createdAt, author }: IPost) {
   const [isLiked, setIsLiked] = useState(false);
-  const [likesCount, setLikesCount] = useState(1000); // для теста
+  const [likesCount, setLikesCount] = useState(1000);
   const [fullScreenImage, setFullScreenImage] = useState<string | null>(null);
 
   const handleImageClick = useCallback((url: string) => {
@@ -25,33 +25,34 @@ export default function Post({ content, photos, createdAt, author }: IPost) {
   }, []);
 
   const handleLikeClick = () => {
-    setIsLiked((prev) => !prev);
-    setLikesCount((prev) => (isLiked ? prev - 1 : prev + 1));
+    setIsLiked(prev => !prev);
+    setLikesCount(prev => (isLiked ? prev - 1 : prev + 1));
   };
   const formattedDate = formatter.format(createdAt);
 
   return (
-    <div className="w-full space-y-3 flex flex-col items-center p-4 bg-primary-theme rounded-md">
-      <div className="w-full flex justify-between items-center">
-        <div className="flex items-center gap-x-3">
+    <div className='w-full space-y-3 flex flex-col p-4 bg-primary-theme rounded-md'>
+      <div className='w-full flex justify-between items-center'>
+        <div className='flex items-center gap-x-3'>
           <UserAvatar size={60} gradientBorder />
-          <div className="flex flex-col">
-            <div className="flex items-center gap-x-2">
+
+          <div className='flex flex-col'>
+            <div className='flex items-center gap-x-2'>
               <Link
                 href={`/user/${author.id}`}
-                className="flex items-center gap-x-2 hover:underline"
+                className='flex items-center gap-x-2 hover:underline'
               >
                 {author.firstName} {author.lastName}
               </Link>
-              <BadgeCheckIcon size={20} className="fill-sky-600" />
+              <BadgeCheckIcon size={20} className='fill-sky-600' />
             </div>
-            <span className="text-sm text-muted-foreground">
+            <span className='text-sm text-muted-foreground'>
               {formattedDate}
             </span>
           </div>
         </div>
-        <div className="p-2 hover:bg-dark cursor-pointer rounded-full transition-colors">
-          <MoreHorizontalIcon className="text-muted-foreground" />
+        <div className='p-2 hover:bg-dark cursor-pointer rounded-full transition-colors'>
+          <MoreHorizontalIcon className='text-muted-foreground' />
         </div>
       </div>
       {!!photos?.length && (
@@ -62,10 +63,10 @@ export default function Post({ content, photos, createdAt, author }: IPost) {
         />
       )}
       <p>{content}</p>
-      <div className="mt-4 w-full flex items-center justify-between">
-        <div className="flex items-center gap-x-6">
+      <div className='mt-4 w-full flex items-center justify-between'>
+        <div className='flex items-center gap-x-6'>
           <div
-            className="flex items-center gap-x-2 cursor-pointer select-none"
+            className='flex items-center gap-x-2 cursor-pointer select-none'
             onClick={handleLikeClick}
           >
             <Heart
@@ -76,12 +77,12 @@ export default function Post({ content, photos, createdAt, author }: IPost) {
               {likesCount}
             </span>
           </div>
-          <div className="flex items-center gap-x-2 cursor-pointer">
-            <MessageSquare color="#6f7376" />
-            <span className="text-[#6f7376]">1k</span>
+          <div className='flex items-center gap-x-2 cursor-pointer'>
+            <MessageSquare color='#6f7376' />
+            <span className='text-[#6f7376]'>1k</span>
           </div>
         </div>
-        <SendToBackIcon color="#6f7376" className="cursor-pointer" />
+        <SendToBackIcon color='#6f7376' className='cursor-pointer' />
       </div>
       {fullScreenImage && (
         <FullScreenImage
