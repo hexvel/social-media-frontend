@@ -11,11 +11,13 @@ interface IProfilePageProps {
 export async function generateMetadata({
   params,
 }: {
-  params: { userId: string };
+  params: Promise<{ userId: string }>;
 }): Promise<Metadata> {
+  const { userId } = await params;
+
   return {
-    title: params.userId,
-    description: params.userId,
+    title: userId,
+    description: userId,
   };
 }
 
