@@ -10,7 +10,7 @@ export default function SidebarNavItems({ className }: { className: string }) {
   const pathname = usePathname();
 
   return (
-    <div className={cn(className, "px-4 bg-primary-theme")}>
+    <div className={cn(className, "px-4 bg-primary-theme min-w-[260px]")}>
       {navItems.map(({ path, label, Icon }) => (
         <Link
           key={path}
