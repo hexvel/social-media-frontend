@@ -15,10 +15,16 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+import { isErrorWithMessage } from "@/lib/utils";
+import { useRegisterMutation } from "@/services/auth.service";
+import { useRouter } from "next/navigation";
+import toast from "react-hot-toast";
 
 const formSchema = z
   .object({
     email: z.string().email("Email is not valid"),
+    firstName: z.string().min(1, "First name is required"),
+    lastName: z.string().min(1, "Last name is required"),
     password: z.string().min(6, "Password must be at least 6 characters long"),
     confirmPassword: z.string(),
   })
@@ -30,18 +36,37 @@ const formSchema = z
 type FormValues = z.infer<typeof formSchema>;
 
 export const RegisterForm = () => {
+  const [registerUser, { isLoading }] = useRegisterMutation();
+  const router = useRouter();
+
   const form = useForm<FormValues>({
     resolver: zodResolver(formSchema),
     defaultValues: {
       email: "",
+      firstName: "",
+      lastName: "",
       password: "",
       confirmPassword: "",
     },
   });
 
   const onSubmit = async (values: FormValues) => {
-    // Здесь будет логика регистрации
-    console.log(values);
+    try {
+      await registerUser({
+        email: values.email,
+        firstName: values.firstName,
+        lastName: values.lastName,
+        password: values.password,
+      }).unwrap();
+      toast.success("Account created successfully");
+      router.push("/auth/login");
+    } catch (error) {
+      const isError = isErrorWithMessage(error);
+
+      if (isError) {
+        toast.error(error.data.message);
+      }
+    }
   };
 
   return (
@@ -68,6 +93,7 @@ export const RegisterForm = () => {
                     <Input
                       {...field}
                       type='text'
+                      disabled={isLoading}
                       placeholder='name@example.com'
                       className='h-11 bg-white/5 border-white/10 focus-visible:ring-white/20'
                     />
@@ -76,7 +102,48 @@ export const RegisterForm = () => {
                 </FormItem>
               )}
             />
+            <FormField
+              control={form.control}
+              name='firstName'
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel className='text-muted-foreground'>
+                    First name
+                  </FormLabel>
+                  <FormControl>
+                    <Input
+                      {...field}
+                      type='text'
+                      disabled={isLoading}
+                      className='h-11 bg-white/5 border-white/10 focus-visible:ring-white/20'
+                    />
+                  </FormControl>
+                  <FormMessage className='text-red-400' />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name='lastName'
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel className='text-muted-foreground'>
+                    Last name
+                  </FormLabel>
 
+                  <FormControl>
+                    <Input
+                      {...field}
+                      type='text'
+                      disabled={isLoading}
+                      className='h-11 bg-white/5 border-white/10 focus-visible:ring-white/20'
+                    />
+                  </FormControl>
+
+                  <FormMessage className='text-red-400' />
+                </FormItem>
+              )}
+            />
             <FormField
               control={form.control}
               name='password'
@@ -89,6 +156,7 @@ export const RegisterForm = () => {
                     <Input
                       {...field}
                       type='password'
+                      disabled={isLoading}
                       className='h-11 bg-white/5 border-white/10 focus-visible:ring-white/20'
                     />
                   </FormControl>
@@ -109,6 +177,7 @@ export const RegisterForm = () => {
                     <Input
                       {...field}
                       type='password'
+                      disabled={isLoading}
                       className='h-11 bg-white/5 border-white/10 focus-visible:ring-white/20'
                     />
                   </FormControl>
@@ -116,16 +185,22 @@ export const RegisterForm = () => {
                 </FormItem>
               )}
             />
-
             <div className='pt-2'>
               <Button
                 type='submit'
+                disabled={isLoading}
                 className='cursor-pointer w-full h-11 bg-primary hover:bg-primary/90 transition-colors'
               >
-                Register
+                {isLoading ? (
+                  <div className='flex items-center justify-center gap-2'>
+                    <div className='w-4 h-4 border-2 border-white/20 border-t-white rounded-full animate-spin' />
+                    <span>Register...</span>
+                  </div>
+                ) : (
+                  "Register"
+                )}
               </Button>
             </div>
-
             <div className='text-center text-sm text-muted-foreground'>
               Already have an account?{" "}
               <Link href='/auth/login' className='text-white hover:underline'>

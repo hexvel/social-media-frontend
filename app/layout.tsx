@@ -1,9 +1,9 @@
 import { AuthCheck } from "@/components/AuthCheck";
 import { ReduxProvider } from "@/components/providers/ReduxProvider";
-import { Toaster } from "@/components/ui/toaster";
 import type { Metadata } from "next";
 import { Roboto } from "next/font/google";
 import { ReactNode } from "react";
+import { Toaster } from "react-hot-toast";
 import "./globals.css";
 
 const robotoMono = Roboto({
@@ -30,7 +30,17 @@ export default async function RootLayout({
         <ReduxProvider>
           <AuthCheck />
           {children}
-          <Toaster />
+          <Toaster
+            position='top-center'
+            reverseOrder={false}
+            toastOptions={{
+              style: {
+                backgroundColor: "#1a1a1a",
+                color: "#fff",
+              },
+              duration: 1500,
+            }}
+          />
         </ReduxProvider>
       </body>
     </html>

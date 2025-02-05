@@ -15,7 +15,10 @@ export const authApi = api.injectEndpoints({
         credentials: "include",
       }),
     }),
-    register: builder.mutation<IUser, IUserData>({
+    register: builder.mutation<
+      IUser,
+      IUserData & { email: string; password: string }
+    >({
       query: credentials => ({
         url: "/auth/register",
         method: "POST",

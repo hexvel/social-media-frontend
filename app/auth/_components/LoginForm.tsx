@@ -14,11 +14,11 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { useToast } from "@/hooks/use-toast";
 import { isErrorWithMessage } from "@/lib/utils";
 import { useLoginMutation } from "@/services/auth.service";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import toast from "react-hot-toast";
 
 const formSchema = z.object({
   email: z.string().email("Email is not valid"),
@@ -29,7 +29,6 @@ type FormValues = z.infer<typeof formSchema>;
 
 export const LoginForm = () => {
   const [loginUser, { isLoading }] = useLoginMutation();
-  const { toast } = useToast();
   const router = useRouter();
 
   const form = useForm<FormValues>({
@@ -43,21 +42,13 @@ export const LoginForm = () => {
   const onSubmit = async (values: FormValues) => {
     try {
       const res = await loginUser(values).unwrap();
-      toast({
-        title: "Success",
-        description: `Welcome ${res.user.firstName}`,
-      });
-      form.reset();
+      toast.success(`Welcome ${res.user.firstName}`);
       router.push("/");
     } catch (error) {
       const isError = isErrorWithMessage(error);
 
       if (isError) {
-        toast({
-          title: "Error",
-          description: error.data.message,
-          variant: "destructive",
-        });
+        toast.error(error.data.message);
       }
     }
   };
@@ -69,7 +60,6 @@ export const LoginForm = () => {
           <h2 className='text-2xl font-bold tracking-tight mb-2'>Welcome</h2>
           <p className='text-muted-foreground text-sm'>Login to continue</p>
         </div>
-
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className='space-y-6'>
             <FormField
@@ -91,7 +81,6 @@ export const LoginForm = () => {
                 </FormItem>
               )}
             />
-
             <FormField
               control={form.control}
               name='password'
@@ -113,7 +102,6 @@ export const LoginForm = () => {
                 </FormItem>
               )}
             />
-
             <div className='pt-2'>
               <Button
                 type='submit'
