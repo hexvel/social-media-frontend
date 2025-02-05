@@ -41,7 +41,9 @@ export async function middleware(request: NextRequest) {
       return response;
     }
 
-    const response = NextResponse.redirect(new URL("/auth/login", request.url));
+    const response = NextResponse.redirect(
+      new URL("/auth/register", request.url),
+    );
     response.cookies.delete("refreshToken");
     return response;
   }
