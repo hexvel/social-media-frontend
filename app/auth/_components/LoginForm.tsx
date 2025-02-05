@@ -57,7 +57,7 @@ export const LoginForm = () => {
     <div className='flex items-center justify-center min-h-[450px] w-full'>
       <div className='w-full px-4 md:px-6 py-8 shadow-lg rounded-xl bg-white/5 backdrop-blur-sm border border-white/10 max-w-md mx-auto'>
         <div className='mb-8 text-center'>
-          <h2 className='text-2xl font-bold tracking-tight mb-2'>Welcome</h2>
+          <h2 className='text-4xl font-medium tracking-tight mb-2'>Welcome</h2>
           <p className='text-muted-foreground text-sm'>Login to continue</p>
         </div>
         <Form {...form}>
