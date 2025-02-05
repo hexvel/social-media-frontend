@@ -71,7 +71,7 @@ export const RegisterForm = () => {
 
   return (
     <div className='flex items-center justify-center min-h-[450px] w-full'>
-      <div className='w-full px-4 md:px-6 py-8 shadow-lg rounded-xl bg-white/5 backdrop-blur-sm border border-white/10 max-w-md mx-auto'>
+      <div className='w-full px-4 mx-4 md:mx-0 md:px-6 py-8 shadow-lg rounded-xl bg-white/5 backdrop-blur-sm border border-white/10 max-w-md'>
         <div className='mb-8 text-center'>
           <h2 className='text-4xl font-medium tracking-tight mb-2'>
             Create account
