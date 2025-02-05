@@ -74,7 +74,18 @@
   * {
     @apply border-border;
   }
+
   body {
     @apply bg-background text-foreground;
+  }
+
+  ::selection {
+    background-color: rgb(157 146 243 / 0.3);
+    color: var(--muted-foreground);
+  }
+
+  .dark ::selection {
+    background-color: rgb(157 146 243 / 0.5);
+    color: var(--muted-foreground);
   }
 }
