@@ -1,4 +1,4 @@
-import { authApi } from "@/services/auth";
+import { authApi } from "@/services/auth.service";
 import { RootState } from "@/shared/store";
 import { IUser } from "@/types/user.type";
 import { createSlice } from "@reduxjs/toolkit";

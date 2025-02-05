@@ -1,13 +1,14 @@
-"use client";
+import { use } from "react";
+import { User } from "./_components/User";
 
-import { USER } from "@/data/fake.data";
+interface IProfilePageProps {
+  params: Promise<{
+    userId: string;
+  }>;
+}
 
-export default function ProfilePage() {
-  const user = USER[1];
+export default function ProfilePage({ params }: IProfilePageProps) {
+  const { userId } = use(params);
 
-  return (
-    <div>
-      {user.firstName} {user.lastName}
-    </div>
-  );
+  return <User userId={userId} />;
 }

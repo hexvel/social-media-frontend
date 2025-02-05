@@ -53,8 +53,8 @@ export default function HomePage() {
   ];
 
   return (
-    <main className="flex w-full min-w-0 gap-5">
-      <div className="flex flex-col items-center w-full min-w-0 space-y-5">
+    <main className='flex w-full min-w-0 gap-5'>
+      <div className='flex flex-col items-center w-full min-w-0 space-y-5'>
         {posts.map((post, index) => (
           <Post key={index} {...post} />
         ))}

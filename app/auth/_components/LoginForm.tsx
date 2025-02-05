@@ -16,7 +16,8 @@ import {
 import { Input } from "@/components/ui/input";
 import { useToast } from "@/hooks/use-toast";
 import { isErrorWithMessage } from "@/lib/utils";
-import { useLoginMutation } from "@/services/auth";
+import { useLoginMutation } from "@/services/auth.service";
+import { useRouter } from "next/navigation";
 
 const formSchema = z.object({
   email: z.string().email("Email is not valid"),
@@ -28,6 +29,7 @@ type FormValues = z.infer<typeof formSchema>;
 export const LoginForm = () => {
   const [loginUser, { isLoading }] = useLoginMutation();
   const { toast } = useToast();
+  const router = useRouter();
 
   const form = useForm<FormValues>({
     resolver: zodResolver(formSchema),
@@ -44,6 +46,8 @@ export const LoginForm = () => {
         title: "Success",
         description: `Welcome ${res.user.firstName}`,
       });
+      form.reset();
+      router.push("/");
     } catch (error) {
       const isError = isErrorWithMessage(error);
 

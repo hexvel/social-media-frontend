@@ -1,3 +1,4 @@
+import { AuthCheck } from "@/components/AuthCheck";
 import { ReduxProvider } from "@/components/providers/ReduxProvider";
 import { Toaster } from "@/components/ui/toaster";
 import type { Metadata } from "next";
@@ -27,6 +28,7 @@ export default async function RootLayout({
         suppressHydrationWarning
       >
         <ReduxProvider>
+          <AuthCheck />
           {children}
           <Toaster />
         </ReduxProvider>
