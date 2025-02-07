@@ -9,8 +9,7 @@ import {
 import Image from "next/image";
 import Link from "next/link";
 
-export const avatarUrl =
-  "https://sun9-19.userapi.com/impg/jlQ3dukOjSe_RH0qLidE2QDOKkol9rugITuj2g/p7o9rQq_SYM.jpg?size=736x736&quality=95&sign=049e28e3dfc6f79b8e576b1195b62abf&type=album";
+export const avatarUrl = "/avatar.jpg";
 
 export default function Header() {
   return (

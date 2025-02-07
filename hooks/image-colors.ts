@@ -99,17 +99,18 @@ export const useImageColors = (imageUrl: string | null | undefined) => {
         0.5,
       );
 
-      const darkenColor = (color: number[]) =>
-        color.map(c => Math.round(c * 0.6));
+      const brightenColor = (color: number[]) =>
+        color.map(c => Math.min(255, Math.round(c * 1.2)));
 
-      const darkTopLeft = darkenColor(topLeftColor);
-      const darkTopRight = darkenColor(topRightColor);
-      const darkBottomLeft = darkenColor(bottomLeftColor);
+      const darkenColor = (color: number[]) =>
+        color.map(c => Math.round(c * 0.1));
+
+      const brightTopLeft = brightenColor(topLeftColor);
       const darkBottomRight = darkenColor(bottomRightColor);
       const darkCenter = darkenColor(centerColor);
 
       const gradientString = `linear-gradient(135deg,
-        rgb(${darkTopLeft.join(",")}),
+        rgb(${brightTopLeft.join(",")}),
         rgb(${darkCenter.join(",")}),
         rgb(${darkBottomRight.join(",")})
       )`;
