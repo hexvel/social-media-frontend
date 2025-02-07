@@ -1,4 +1,7 @@
+"use client";
+
 import { NAVIGATION_ITEMS } from "@/constants/navbar.constant";
+import { selectUser } from "@/features/users/userSlice";
 import {
   Bell,
   MessageSquareTextIcon,
@@ -8,10 +11,11 @@ import {
 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-
-export const avatarUrl = "/avatar.jpg";
+import { useSelector } from "react-redux";
 
 export default function Header() {
+  const user = useSelector(selectUser);
+
   return (
     <header className='hidden xl:flex w-full justify-between py-4 px-8 bg-primary-theme/60'>
       <div className='flex items-center gap-x-2'>
@@ -54,7 +58,7 @@ export default function Header() {
         </div>
         <div>
           <Image
-            src={avatarUrl}
+            src={user?.avatar || "/avatar.jpg"}
             height={48}
             width={48}
             alt='Profile photo'

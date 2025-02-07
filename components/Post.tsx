@@ -1,8 +1,9 @@
 "use client";
 
 import UserAvatar from "@/components/UserAvatar";
-import { cn, formatter } from "@/lib/utils";
-import { IPost } from "@/types/post.type";
+import { useLikes } from "@/hooks/use-likes";
+import { formatter } from "@/lib/utils";
+import type { IPost } from "@/types/post.type";
 import {
   BadgeCheckIcon,
   Heart,
@@ -12,13 +13,18 @@ import {
 } from "lucide-react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useCallback, useState } from "react";
+import { useCallback, useMemo, useState } from "react";
 import FullScreenImage from "./media/FullScreenImage";
 import { MediaPreviews } from "./media/MediaPreview";
 
-export default function Post({ content, photos, createdAt, author }: IPost) {
-  const [isLiked, setIsLiked] = useState(false);
-  const [likesCount, setLikesCount] = useState(1000);
+export default function Post({
+  id,
+  content,
+  photos,
+  createdAt,
+  author,
+}: IPost) {
+  const { likes, isLiked, handleAddLike, handleRemoveLike } = useLikes(id);
   const [fullScreenImage, setFullScreenImage] = useState<string | null>(null);
   const router = useRouter();
 
@@ -26,11 +32,14 @@ export default function Post({ content, photos, createdAt, author }: IPost) {
     setFullScreenImage(url);
   }, []);
 
-  const handleLikeClick = () => {
-    setIsLiked(prev => !prev);
-    setLikesCount(prev => (isLiked ? prev - 1 : prev + 1));
-  };
-  const formattedDate = formatter.format(createdAt);
+  const formattedDate = useMemo(
+    () => formatter.format(new Date(createdAt)),
+    [createdAt],
+  );
+
+  const handlePostClick = useCallback(() => {
+    router.push(`/posts/${author.id}`);
+  }, [router, author.id]);
 
   return (
     <div className='w-full space-y-3 flex flex-col p-4 bg-primary-theme rounded-md'>
@@ -50,9 +59,7 @@ export default function Post({ content, photos, createdAt, author }: IPost) {
             </div>
             <span
               className='text-sm text-muted-foreground cursor-pointer hover:underline'
-              onClick={() => {
-                router.push(`/posts/${author.id}`);
-              }}
+              onClick={handlePostClick}
             >
               {formattedDate}
             </span>
@@ -74,15 +81,13 @@ export default function Post({ content, photos, createdAt, author }: IPost) {
         <div className='flex items-center gap-x-6'>
           <div
             className='flex items-center gap-x-2 cursor-pointer select-none'
-            onClick={handleLikeClick}
+            onClick={isLiked ? handleRemoveLike : handleAddLike}
           >
             <Heart
               color={isLiked ? "red" : "#6f7376"}
               fill={isLiked ? "red" : "transparent"}
             />
-            <span className={cn("text-[#6f7376]", isLiked && "text-red-500")}>
-              {likesCount}
-            </span>
+            <span className='text-[#6f7376]'>{likes}</span>
           </div>
           <div className='flex items-center gap-x-2 cursor-pointer'>
             <MessageSquare color='#6f7376' />

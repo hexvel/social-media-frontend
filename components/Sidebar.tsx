@@ -18,7 +18,7 @@ export default function Sidebar({ className }: { className: string }) {
           {user?.firstName} {user?.lastName}{" "}
           <BadgeCheckIcon size={24} className='fill-sky-600' />
         </span>
-        <span className='text-muted-foreground'>@official_hexvel</span>
+        <span className='text-muted-foreground'>@{user?.username}</span>
       </div>
       <UserFollowers />
       <SidebarNavItems className={className} />

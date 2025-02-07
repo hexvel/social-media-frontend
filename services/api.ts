@@ -32,6 +32,6 @@ export const api = createApi({
   baseQuery: retry(baseQueryWithReauth, { maxRetries: 1 }),
   refetchOnMountOrArgChange: false,
   keepUnusedDataFor: 600,
-  tagTypes: ["Post", "User", "Comment", "Profile"],
+  tagTypes: ["Post", "User", "Comment", "Profile", "Like"],
   endpoints: () => ({}),
 });
