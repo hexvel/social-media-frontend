@@ -1,10 +1,10 @@
 import { likesApi } from "@/services/likes.service";
 import { RootState } from "@/shared/store";
-import { Like } from "@/types/like.type";
+import { ILike } from "@/types/like.type";
 import { createSlice } from "@reduxjs/toolkit";
 
 interface InitialState {
-  likes: Like[] | null;
+  likes: ILike | null;
 }
 
 const initialState: InitialState = {
