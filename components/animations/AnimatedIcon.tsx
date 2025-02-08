@@ -1,5 +1,5 @@
 import { AnimatePresence, motion } from "framer-motion";
-import { Heart, MessageCircleHeart } from "lucide-react";
+import { Heart } from "lucide-react";
 import React from "react";
 
 interface AnimatedIconProps {
@@ -45,9 +45,9 @@ const AnimatedIcon: React.FC<AnimatedIconProps> = ({
               initial={{ scale: 0 }}
               animate={{ scale: 1 }}
               transition={{ duration: 0.3, type: "spring" }}
-              className='h-6 w-6 flex items-center justify-center'
+              className='h-6 w-6 flex flex-col items-center justify-center'
             >
-              <MessageCircleHeart size={16} />
+              <Heart size={16} />
             </motion.div>
           ) : (
             icon

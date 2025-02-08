@@ -21,6 +21,15 @@ export const friendsApi = api.injectEndpoints({
         method: "GET",
       }),
     }),
+    getStats: builder.query<
+      { followers: IUser[]; following: IUser[]; friends: IUser[] },
+      void
+    >({
+      query: () => ({
+        url: "/friends.getStats",
+        method: "GET",
+      }),
+    }),
   }),
 });
 
@@ -28,4 +37,5 @@ export const {
   useGetFollowersQuery,
   useGetFollowingQuery,
   useGetFriendsQuery,
+  useGetStatsQuery,
 } = friendsApi;

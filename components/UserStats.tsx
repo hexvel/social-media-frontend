@@ -7,11 +7,7 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog";
 import { ScrollArea } from "@/components/ui/scroll-area";
-import {
-  useGetFollowersQuery,
-  useGetFollowingQuery,
-  useGetFriendsQuery,
-} from "@/services/friends.service";
+import { useGetStatsQuery } from "@/services/friends.service";
 import { IUser } from "@/types/user.type";
 import { Avatar, AvatarFallback, AvatarImage } from "@radix-ui/react-avatar";
 import { Loader2 } from "lucide-react";
@@ -19,23 +15,18 @@ import Link from "next/link";
 import { useState } from "react";
 
 export default function UserStats() {
-  const { data: followers = [], isLoading: isFollowersLoading } =
-    useGetFollowersQuery();
-  const { data: following = [], isLoading: isFollowingLoading } =
-    useGetFollowingQuery();
-  const { data: friends = [], isLoading: isFriendsLoading } =
-    useGetFriendsQuery();
-
-  const stats = [
-    { value: followers, label: "Followers" },
-    { value: following, label: "Following" },
-    { value: friends, label: "Friends" },
-  ];
+  const { data: fetchedStats, isLoading: isStatsLoading } = useGetStatsQuery();
 
   const [selectedStat, setSelectedStat] = useState<{
     label: string;
     users: IUser[];
   } | null>(null);
+
+  const stats = [
+    { value: fetchedStats?.followers || [], label: "Followers" },
+    { value: fetchedStats?.following || [], label: "Following" },
+    { value: fetchedStats?.friends || [], label: "Friends" },
+  ];
 
   const handleStatClick = (label: string, users: IUser[]) => {
     setSelectedStat({
@@ -44,8 +35,7 @@ export default function UserStats() {
     });
   };
 
-  const isLoading =
-    isFollowersLoading || isFollowingLoading || isFriendsLoading;
+  const isLoading = isStatsLoading;
 
   return (
     <>
