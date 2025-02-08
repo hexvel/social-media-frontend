@@ -14,9 +14,9 @@ import {
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useCallback, useMemo, useState } from "react";
-import AnimatedIcon from "./animations/AnimatedIcon";
-import FullScreenImage from "./media/FullScreenImage";
-import { MediaPreviews } from "./media/MediaPreview";
+import AnimatedIcon from "../animations/AnimatedIcon";
+import FullScreenImage from "../media/FullScreenImage";
+import { MediaPreviews } from "../media/MediaPreview";
 
 export default function Post({
   id,

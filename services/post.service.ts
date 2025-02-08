@@ -1,4 +1,5 @@
 import { api } from "@/services/api";
+import { IPost, IPostCreate } from "@/types/post.type";
 
 export const postApi = api.injectEndpoints({
   endpoints: builder => ({
@@ -19,8 +20,16 @@ export const postApi = api.injectEndpoints({
             ]
           : [{ type: "Post", id: "LIST" }],
     }),
+    createPost: builder.mutation<IPost, IPostCreate>({
+      query: data => ({
+        url: "/posts.create",
+        method: "POST",
+        body: data,
+      }),
+      invalidatesTags: [{ type: "Post", id: "LIST" }],
+    }),
     getPostById: builder.query({
-      query: id => `/posts.getById?id=${id}`,
+      query: id => ({ url: `/posts.getById`, params: { id } }),
       keepUnusedDataFor: 300,
       providesTags: (_, __, id) => [{ type: "Post", id }],
     }),
@@ -28,6 +37,6 @@ export const postApi = api.injectEndpoints({
   overrideExisting: false,
 });
 
-export const { useGetPostByIdQuery } = postApi;
+export const { useGetPostByIdQuery, useCreatePostMutation } = postApi;
 
 export const { getPostById } = postApi.endpoints;

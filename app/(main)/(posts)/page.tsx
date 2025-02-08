@@ -1,7 +1,7 @@
 "use client";
 
-import Post from "@/components/Post";
-import PostsLoadingSkeleton from "@/components/PostSkeleton";
+import Post from "@/components/posts/Post";
+import PostsLoadingSkeleton from "@/components/posts/PostSkeleton";
 import { useGetRecommendationPostsQuery } from "@/services/recommendation.service";
 
 export default function HomePage() {

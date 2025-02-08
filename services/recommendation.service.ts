@@ -8,6 +8,7 @@ export const recommendationsApi = api.injectEndpoints({
         url: "/recommendations.getPosts",
         method: "GET",
       }),
+      providesTags: [{ type: "Post", id: "LIST" }],
     }),
   }),
 });

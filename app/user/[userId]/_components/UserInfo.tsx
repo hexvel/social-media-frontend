@@ -45,7 +45,7 @@ export const UserInfo = ({
         }`}
         onClick={onInfoClick}
       >
-        Подробнее
+        More info
       </button>
     </div>
   </div>

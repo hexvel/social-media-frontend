@@ -55,7 +55,7 @@ export default function Header() {
           <div className='h-2 w-2 bg-red-600 rounded-full absolute top-0 right-0' />
           <Bell size={24} color='#6f7376' />
         </div>
-        <div>
+        <Link href={`/user/${user?.id}`}>
           <Image
             src={user?.avatar || "/avatar.jpg"}
             height={48}
@@ -63,7 +63,7 @@ export default function Header() {
             alt='Profile photo'
             className='rounded-md shadow-lg cursor-pointer'
           />
-        </div>
+        </Link>
       </div>
     </header>
   );

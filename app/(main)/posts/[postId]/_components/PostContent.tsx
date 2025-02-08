@@ -1,7 +1,7 @@
 "use client";
 
 import Loader from "@/components/Loader";
-import Post from "@/components/Post";
+import Post from "@/components/posts/Post";
 import { useGetPostByIdQuery } from "@/services/post.service";
 
 export const PostContent = ({ postId }: { postId: string }) => {

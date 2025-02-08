@@ -17,10 +17,10 @@ interface UserFullInfoProps {
 export const UserFullInfo = ({ user, isOpen, onClose }: UserFullInfoProps) => {
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className='max-w-2xl animate-in fade-in-0 zoom-in-95 slide-in-from-left-1/2 slide-in-from-top-[48%] duration-200 bg-primary-theme border border-secondary-theme'>
+      <DialogContent className='animate-in fade-in-0 zoom-in-95 slide-in-from-left-1/2 slide-in-from-top-[48%] duration-200 bg-primary-theme border border-secondary-theme'>
         <DialogHeader>
           <DialogTitle className='text-2xl font-semibold'>
-            Информация о пользователе
+            About {user.firstName} {user.lastName}
           </DialogTitle>
         </DialogHeader>
 
@@ -41,12 +41,12 @@ export const UserFullInfo = ({ user, isOpen, onClose }: UserFullInfoProps) => {
           <div className='grid grid-cols-1 md:grid-cols-2 gap-4'>
             <InfoItem
               icon={<User2 className='h-5 w-5' />}
-              label='Имя пользователя'
-              value={`@${user.username}` || "Не указано"}
+              label='Display name'
+              value={`@${user.username}` || "Not specified"}
             />
             <InfoItem
               icon={<Calendar className='h-5 w-5' />}
-              label='Дата регистрации'
+              label='Registration date'
               value={new Date(user.createdAt).toLocaleDateString("ru-RU")}
             />
           </div>

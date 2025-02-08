@@ -5,6 +5,7 @@ import { ReactNode } from "react";
 import { Toaster } from "react-hot-toast";
 
 import { AuthProvider } from "@/components/providers/AuthProvider";
+import { ThemeProvider } from "@/components/providers/ThemeProvider";
 import "./globals.css";
 
 const robotoMono = Roboto({
@@ -37,18 +38,25 @@ export default async function RootLayout({
       >
         <ReduxProvider>
           <AuthProvider>
-            {children}
-            <Toaster
-              position='top-center'
-              reverseOrder={false}
-              toastOptions={{
-                style: {
-                  backgroundColor: "#1a1a1a",
-                  color: "#fff",
-                },
-                duration: 1500,
-              }}
-            />
+            <ThemeProvider
+              attribute='class'
+              defaultTheme='system'
+              enableSystem
+              disableTransitionOnChange
+            >
+              {children}
+              <Toaster
+                position='top-center'
+                reverseOrder={false}
+                toastOptions={{
+                  style: {
+                    backgroundColor: "#1a1a1a",
+                    color: "#fff",
+                  },
+                  duration: 1500,
+                }}
+              />
+            </ThemeProvider>
           </AuthProvider>
         </ReduxProvider>
       </body>

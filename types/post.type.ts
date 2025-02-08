@@ -11,3 +11,9 @@ export interface IPost {
     lastName: string;
   };
 }
+
+export interface IPostCreate {
+  content: string;
+  photos?: Media[];
+  tags: string[];
+}

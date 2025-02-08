@@ -10,7 +10,7 @@ export const UserActions = ({ isMobile = false }: UserActionsProps) => {
     return (
       <div className='p-2 mt-4'>
         <button className='w-full py-3 bg-zinc-800 text-white rounded-lg'>
-          Сообщение
+          Message
         </button>
       </div>
     );
@@ -19,7 +19,7 @@ export const UserActions = ({ isMobile = false }: UserActionsProps) => {
   return (
     <div className='flex gap-2'>
       <Button variant='secondary' className='cursor-pointer text-sm'>
-        Сообщение
+        Message
       </Button>
       <Button variant='secondary' size='icon' className='cursor-pointer'>
         <MoreHorizontal className='h-4 w-4' />
