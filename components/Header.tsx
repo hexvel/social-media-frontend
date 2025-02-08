@@ -1,7 +1,7 @@
 "use client";
 
 import { NAVIGATION_ITEMS } from "@/constants/navbar.constant";
-import { selectUser } from "@/features/users/userSlice";
+import { useGetProfileUserQuery } from "@/services/user.service";
 import {
   Bell,
   MessageSquareTextIcon,
@@ -11,10 +11,9 @@ import {
 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import { useSelector } from "react-redux";
 
 export default function Header() {
-  const user = useSelector(selectUser);
+  const { data: user } = useGetProfileUserQuery();
 
   return (
     <header className='hidden xl:flex w-full justify-between py-4 px-8 bg-primary-theme/60'>

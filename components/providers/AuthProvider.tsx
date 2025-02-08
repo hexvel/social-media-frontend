@@ -1,6 +1,6 @@
 "use client";
 
-import { setUser } from "@/features/users/userSlice";
+import { setProfileUser } from "@/features/users/userSlice";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
@@ -23,16 +23,16 @@ export function AuthProvider({ children }: AuthProviderProps) {
         });
 
         if (!response.ok) {
-          dispatch(setUser(null));
+          dispatch(setProfileUser(null));
           router.push("/auth/login");
           return;
         }
 
         const userData = await response.json();
-        dispatch(setUser(userData));
+        dispatch(setProfileUser(userData));
       } catch (error) {
         console.error("Ошибка при получении данных пользователя:", error);
-        dispatch(setUser(null));
+        dispatch(setProfileUser(null));
         router.push("/auth/login");
       } finally {
         setIsLoading(false);

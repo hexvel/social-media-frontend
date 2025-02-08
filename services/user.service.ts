@@ -1,41 +1,27 @@
 import { api } from "@/services/api";
-import { IUser } from "@/types/user.type";
+import type { IUser } from "@/types/user.type";
 
 export const userApi = api.injectEndpoints({
   endpoints: builder => ({
-    getUser: builder.query<IUser, string | number>({
-      query: data => ({
-        url: "/users.get",
+    getUser: builder.query<IUser, string>({
+      query: id => ({
+        url: `/users.get`,
         method: "GET",
-        params: { owner: data },
+        params: { owner: id },
       }),
+      providesTags: (result, error, id) => [{ type: "User", id }],
     }),
-    getProfile: builder.query({
-      query: () => "/profile",
-      keepUnusedDataFor: 1800,
-      providesTags: ["Profile"],
-    }),
-    getUsers: builder.query({
-      query: params => ({
-        url: "/users",
-        params,
+    getProfileUser: builder.query<IUser, void>({
+      query: () => ({
+        url: "/users.me",
+        method: "GET",
       }),
-      keepUnusedDataFor: 600,
-      providesTags: result =>
-        result
-          ? [
-              ...result.map(({ id }: { id: number | string }) => ({
-                type: "User" as const,
-                id,
-              })),
-              { type: "User", id: "LIST" },
-            ]
-          : [{ type: "User", id: "LIST" }],
+      providesTags: ["ProfileUser"],
     }),
   }),
   overrideExisting: false,
 });
 
-export const { useGetUserQuery } = userApi;
+export const { useGetUserQuery, useGetProfileUserQuery } = userApi;
 
-export const { getUser } = userApi.endpoints;
+export const { getUser, getProfileUser } = userApi.endpoints;

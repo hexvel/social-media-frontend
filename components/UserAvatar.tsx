@@ -1,9 +1,8 @@
 "use client";
 
-import { selectUser } from "@/features/users/userSlice";
 import { cn } from "@/lib/utils";
+import { useGetProfileUserQuery } from "@/services/user.service";
 import Image from "next/image";
-import { useSelector } from "react-redux";
 
 interface UserAvatarProps {
   avatarUrl?: string | null | undefined;
@@ -18,7 +17,7 @@ export default function UserAvatar({
   gradientBorder,
 }: UserAvatarProps) {
   const imageSize = size - 8;
-  const user = useSelector(selectUser);
+  const { data: user } = useGetProfileUserQuery();
 
   return (
     <div className={cn("flex flex-col items-center", className)}>

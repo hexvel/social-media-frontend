@@ -5,15 +5,16 @@ import { useLikes } from "@/hooks/use-likes";
 import { formatter } from "@/lib/utils";
 import type { IPost } from "@/types/post.type";
 import {
-  BadgeCheckIcon,
+  BadgeCheck,
   Heart,
   MessageSquare,
-  MoreHorizontalIcon,
-  SendToBackIcon,
+  MoreHorizontal,
+  Share2,
 } from "lucide-react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useCallback, useMemo, useState } from "react";
+import AnimatedIcon from "./animations/AnimatedIcon";
 import FullScreenImage from "./media/FullScreenImage";
 import { MediaPreviews } from "./media/MediaPreview";
 
@@ -42,7 +43,7 @@ export default function Post({
   }, [router, author.id]);
 
   return (
-    <div className='w-full space-y-3 flex flex-col p-4 bg-primary-theme rounded-md'>
+    <div className='w-full space-y-3 flex flex-col p-4 bg-primary-theme rounded-md shadow-md transition-all hover:shadow-lg'>
       <div className='w-full flex justify-between items-center'>
         <div className='flex items-center gap-x-3'>
           <UserAvatar size={60} gradientBorder />
@@ -51,22 +52,23 @@ export default function Post({
             <div className='flex items-center gap-x-2'>
               <Link
                 href={`/user/${author.id}`}
-                className='flex items-center gap-x-2 hover:underline'
+                className='flex items-center gap-x-2 hover:underline font-medium'
               >
                 {author.firstName} {author.lastName}
               </Link>
-              <BadgeCheckIcon size={20} className='fill-sky-600' />
+
+              <BadgeCheck size={20} className='text-blue-500' />
             </div>
             <span
-              className='text-sm text-muted-foreground cursor-pointer hover:underline'
+              className='text-sm text-gray-500 cursor-pointer hover:underline'
               onClick={handlePostClick}
             >
               {formattedDate}
             </span>
           </div>
         </div>
-        <div className='p-2 hover:bg-dark cursor-pointer rounded-full transition-colors'>
-          <MoreHorizontalIcon className='text-muted-foreground' />
+        <div className='p-2 hover:bg-gray-200 cursor-pointer rounded-full transition-colors'>
+          <MoreHorizontal className='text-gray-500' />
         </div>
       </div>
       {!!photos?.length && (
@@ -79,22 +81,24 @@ export default function Post({
       <p>{content}</p>
       <div className='mt-4 w-full flex items-center justify-between'>
         <div className='flex items-center gap-x-6'>
-          <div
-            className='flex items-center gap-x-2 cursor-pointer select-none'
+          <AnimatedIcon
+            icon={<Heart size={24} />}
+            count={likes}
             onClick={isLiked ? handleRemoveLike : handleAddLike}
-          >
-            <Heart
-              color={isLiked ? "red" : "#6f7376"}
-              fill={isLiked ? "red" : "transparent"}
-            />
-            <span className='text-[#6f7376]'>{likes}</span>
-          </div>
-          <div className='flex items-center gap-x-2 cursor-pointer'>
-            <MessageSquare color='#6f7376' />
-            <span className='text-[#6f7376]'>1k</span>
-          </div>
+            isActive={isLiked}
+          />
+          <AnimatedIcon
+            icon={<MessageSquare size={24} />}
+            count={1000}
+            onClick={() => {}}
+          />
         </div>
-        <SendToBackIcon color='#6f7376' className='cursor-pointer' />
+        <AnimatedIcon
+          icon={<Share2 size={24} />}
+          count={0}
+          onClick={() => {}}
+          isShare={true}
+        />
       </div>
       {fullScreenImage && (
         <FullScreenImage

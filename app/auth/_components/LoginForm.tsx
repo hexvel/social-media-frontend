@@ -14,7 +14,7 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { setUser } from "@/features/users/userSlice";
+import { setProfileUser } from "@/features/users/userSlice";
 import { isErrorWithMessage } from "@/lib/utils";
 import { useLoginMutation } from "@/services/auth.service";
 import Link from "next/link";
@@ -46,7 +46,7 @@ export const LoginForm = () => {
     try {
       const res = await loginUser(values).unwrap();
       toast.success(`Welcome ${res.user.firstName}`);
-      dispatch(setUser(res.user));
+      dispatch(setProfileUser(res.user));
       router.push("/");
     } catch (error) {
       const isError = isErrorWithMessage(error);

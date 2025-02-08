@@ -1,14 +1,13 @@
 "use client";
 
-import { selectUser } from "@/features/users/userSlice";
+import { useGetProfileUserQuery } from "@/services/user.service";
 import { BadgeCheckIcon } from "lucide-react";
-import { useSelector } from "react-redux";
 import SidebarNavItems from "./SidebarNavItems";
 import UserAvatar from "./UserAvatar";
-import UserFollowers from "./UserFollowers";
+import UserStats from "./UserStats";
 
 export default function Sidebar({ className }: { className: string }) {
-  const user = useSelector(selectUser);
+  const { data: user } = useGetProfileUserQuery();
 
   return (
     <div className={className}>
@@ -20,7 +19,7 @@ export default function Sidebar({ className }: { className: string }) {
         </span>
         <span className='text-muted-foreground'>@{user?.username}</span>
       </div>
-      <UserFollowers />
+      <UserStats />
       <SidebarNavItems className={className} />
     </div>
   );

@@ -11,7 +11,10 @@ import { useState } from "react";
 import { UserFullInfo } from "./UserFullInfo";
 
 export const User = ({ userId }: { userId: string }) => {
-  const { data: user, isLoading } = useGetUserQuery(userId);
+  const { data: user, isLoading } = useGetUserQuery(userId, {
+    refetchOnMountOrArgChange: true,
+  });
+
   const backgroundGradient = useImageColors(user?.avatar || "/avatar.jpg");
   const [isInfoOpen, setIsInfoOpen] = useState(false);
 

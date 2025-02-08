@@ -4,19 +4,19 @@ import { IUser } from "@/types/user.type";
 import { createSlice } from "@reduxjs/toolkit";
 
 interface InitialState {
-  user: IUser | null;
+  profileUser: IUser | null;
 }
 
 const initialState: InitialState = {
-  user: null,
+  profileUser: null,
 };
 
 export const userSlice = createSlice({
   name: "user",
   initialState,
   reducers: {
-    setUser: (state, { payload }) => {
-      state.user = payload;
+    setProfileUser: (state, { payload }) => {
+      state.profileUser = payload;
     },
   },
 
@@ -24,12 +24,12 @@ export const userSlice = createSlice({
     builder.addMatcher(
       userApi.endpoints.getUser.matchFulfilled,
       (state, { payload }) => {
-        state.user = payload;
+        state.profileUser = payload;
       },
     );
   },
 });
 
-export const { setUser } = userSlice.actions;
+export const { setProfileUser } = userSlice.actions;
 
-export const selectUser = (state: RootState) => state.user.user;
+export const selectProfileUser = (state: RootState) => state.user.profileUser;
