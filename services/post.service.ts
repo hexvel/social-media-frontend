@@ -3,11 +3,12 @@ import { IPost, IPostCreate } from "@/types/post.type";
 
 export const postApi = api.injectEndpoints({
   endpoints: builder => ({
-    getPosts: builder.query({
-      query: params => ({
+    getPosts: builder.query<IPost[], { owner: string }>({
+      query: ({ owner }) => ({
         url: "/posts.get",
-        params,
+        params: { owner },
       }),
+
       keepUnusedDataFor: 300,
       providesTags: result =>
         result
@@ -37,6 +38,7 @@ export const postApi = api.injectEndpoints({
   overrideExisting: false,
 });
 
-export const { useGetPostByIdQuery, useCreatePostMutation } = postApi;
+export const { useGetPostsQuery, useGetPostByIdQuery, useCreatePostMutation } =
+  postApi;
 
-export const { getPostById } = postApi.endpoints;
+export const { getPostById, getPosts } = postApi.endpoints;

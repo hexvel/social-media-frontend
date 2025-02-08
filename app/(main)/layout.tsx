@@ -1,3 +1,4 @@
+import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import Sidebar from "@/components/Sidebar";
 import { ReactNode } from "react";
@@ -10,6 +11,7 @@ export default function MainLayout({ children }: { children: ReactNode }) {
         <Sidebar className='sticky top-4 hidden space-y-3 rounded-lg px-3 py-5 shadow-sm sm:block' />
         {children}
       </div>
+      <Footer />
       <Sidebar className='sticky bottom-0 flex w-full justify-center gap-5 sm:hidden' />
     </div>
   );

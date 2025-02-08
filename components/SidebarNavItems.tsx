@@ -10,13 +10,13 @@ export default function SidebarNavItems({ className }: { className: string }) {
   const pathname = usePathname();
 
   return (
-    <div className={cn(className, "px-4 bg-primary-theme min-w-[260px]")}>
+    <div className={cn(className, "z-[5555] bg-primary-theme min-w-[260px]")}>
       {navItems.map(({ path, label, Icon }) => (
         <Link
           key={path}
           href={path}
           className={cn(
-            "py-2 px-4 rounded-md w-full flex items-center justify-center sm:justify-start p-3 gap-x-4 transition-colors text-[#6f7376]",
+            "p-4 rounded-md w-full flex items-center justify-center sm:justify-start gap-x-4 transition-colors text-[#6f7376]",
             pathname === path
               ? "bg-secondary-theme text-dark"
               : "hover:bg-secondary-theme hover:text-primary-theme",
