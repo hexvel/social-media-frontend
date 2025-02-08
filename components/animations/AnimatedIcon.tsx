@@ -40,18 +40,21 @@ const AnimatedIcon: React.FC<AnimatedIconProps> = ({
             isActive ? "text-white" : "text-gray-500"
           }`}
         >
-          {isActive && icon?.type === Heart ? (
-            <motion.div
-              initial={{ scale: 0 }}
-              animate={{ scale: 1 }}
-              transition={{ duration: 0.3, type: "spring" }}
-              className='h-6 w-6 flex flex-col items-center justify-center'
-            >
-              <Heart size={16} />
-            </motion.div>
-          ) : (
-            icon
-          )}
+          {
+            // @ts-ignore
+            isActive && icon?.type === Heart ? (
+              <motion.div
+                initial={{ scale: 0 }}
+                animate={{ scale: 1 }}
+                transition={{ duration: 0.3, type: "spring" }}
+                className='h-6 w-6 flex flex-col items-center justify-center'
+              >
+                <Heart size={16} />
+              </motion.div>
+            ) : (
+              icon
+            )
+          }
         </motion.div>
       </div>
       <span
