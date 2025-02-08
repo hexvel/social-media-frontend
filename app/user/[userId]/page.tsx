@@ -24,10 +24,8 @@ export async function generateMetadata({
 export default function ProfilePage({ params }: IProfilePageProps) {
   const { userId } = use(params);
 
-  console.log(userId);
-
   return (
-    <div className='w-full relative top-4'>
+    <div className='min-h-screen w-full relative top-4'>
       <User userId={userId} />
     </div>
   );
