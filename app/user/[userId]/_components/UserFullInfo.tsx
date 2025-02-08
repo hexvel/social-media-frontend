@@ -30,8 +30,10 @@ export const UserFullInfo = ({ user, isOpen, onClose }: UserFullInfoProps) => {
               <h2 className='text-xl font-medium'>
                 {user.firstName} {user.lastName}
               </h2>
-              {user.bio && (
+              {user.bio ? (
                 <p className='text-muted-foreground text-sm mt-1'>{user.bio}</p>
+              ) : (
+                <p className='text-muted-foreground text-sm mt-1'>No bio</p>
               )}
             </div>
           </div>
