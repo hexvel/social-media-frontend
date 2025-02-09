@@ -1,15 +1,12 @@
 import { Media } from "./media.type";
+import { IUser } from "./user.type";
 
 export interface IPost {
   id: number;
   content: string;
   photos?: Media[];
   createdAt: Date;
-  author: {
-    id: number;
-    firstName: string;
-    lastName: string;
-  };
+  author: IUser;
 }
 
 export interface IPostCreate {

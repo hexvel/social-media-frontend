@@ -4,6 +4,7 @@ export interface IUser {
   firstName: string;
   lastName: string;
   bio?: string | null;
+  isVerified: boolean;
   avatar?: string | null;
   createdAt: string;
 }

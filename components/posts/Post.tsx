@@ -54,8 +54,9 @@ export default function Post({
               >
                 {author.firstName} {author.lastName}
               </Link>
-
-              <BadgeCheck size={20} className='text-blue-500' />
+              {author.isVerified && (
+                <BadgeCheck size={20} className='text-blue-500' />
+              )}
             </div>
             <span
               className='text-sm text-gray-500 cursor-pointer hover:underline'

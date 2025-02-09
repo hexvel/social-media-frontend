@@ -15,7 +15,9 @@ export default function Sidebar({ className }: { className: string }) {
         <UserAvatar size={130} gradientBorder />
         <span className='text-2xl flex items-center gap-x-2'>
           {user?.firstName} {user?.lastName}{" "}
-          <BadgeCheckIcon size={24} className='fill-sky-600' />
+          {user?.isVerified && (
+            <BadgeCheckIcon size={24} className='fill-sky-600' />
+          )}
         </span>
         <span className='text-muted-foreground'>@{user?.username}</span>
       </div>
