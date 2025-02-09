@@ -1,7 +1,4 @@
-"use client";
-
 import { cn } from "@/lib/utils";
-import { useGetProfileUserQuery } from "@/services/user.service";
 import Image from "next/image";
 
 interface UserAvatarProps {
@@ -9,15 +6,16 @@ interface UserAvatarProps {
   size?: number;
   className?: string;
   gradientBorder?: boolean;
+  src?: string | undefined;
 }
 
 export default function UserAvatar({
   className,
   size = 48,
   gradientBorder,
+  src = "/avatar.jpg",
 }: UserAvatarProps) {
   const imageSize = size - 8;
-  const { data: user } = useGetProfileUserQuery();
 
   return (
     <div className={cn("flex flex-col items-center", className)}>
@@ -26,7 +24,7 @@ export default function UserAvatar({
           <div className='absolute inset-0 rounded-full bg-gradient-to-br from-purple-600 via-red-500 to-yellow-400 p-[2px]'>
             <div className='rounded-full bg-black p-1'>
               <Image
-                src={user?.avatar || "/avatar.jpg"}
+                src={src}
                 alt='Profile Pic'
                 width={imageSize}
                 height={imageSize}
@@ -37,7 +35,7 @@ export default function UserAvatar({
         </div>
       ) : (
         <Image
-          src={user?.avatar || "/avatar.jpg"}
+          src={src}
           alt='Profile Pic'
           width={imageSize}
           height={imageSize}

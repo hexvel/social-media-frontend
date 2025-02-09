@@ -44,7 +44,7 @@ export default function Post({
     <div className='w-full space-y-3 flex flex-col p-4 bg-primary-theme rounded-md shadow-md transition-all hover:shadow-lg'>
       <div className='w-full flex justify-between items-center'>
         <div className='flex items-center gap-x-3'>
-          <UserAvatar size={60} gradientBorder />
+          <UserAvatar size={60} gradientBorder src={author.avatar} />
 
           <div className='flex flex-col'>
             <div className='flex items-center gap-x-2'>

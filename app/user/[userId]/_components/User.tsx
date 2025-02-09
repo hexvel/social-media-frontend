@@ -9,13 +9,14 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog"; // импортируем компоненты для модалки
+import { useMobile } from "@/hooks/use-mobile";
 import { cn } from "@/lib/utils";
 import {
   useGetProfileUserQuery,
   useGetUserQuery,
 } from "@/services/user.service";
 import { PlusCircle } from "lucide-react";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { UserDesktop } from "./UserDesktop";
 import { UserFullInfo } from "./UserFullInfo";
 import { UserMobile } from "./UserMobile";
@@ -28,15 +29,8 @@ export const User = ({ userId }: { userId: string }) => {
   const { data: profileUser } = useGetProfileUserQuery();
 
   const [isInfoOpen, setIsInfoOpen] = useState(false);
-  const [isMobile, setIsMobile] = useState(false);
+  const isMobile = useMobile();
   const [isDialogOpen, setIsDialogOpen] = useState(false);
-
-  useEffect(() => {
-    const checkIfMobile = () => setIsMobile(window.innerWidth < 768);
-    checkIfMobile();
-    window.addEventListener("resize", checkIfMobile);
-    return () => window.removeEventListener("resize", checkIfMobile);
-  }, []);
 
   if (isLoading) return <FullscreenLoader />;
   if (!user) return <div>User not found</div>;
