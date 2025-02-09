@@ -5,6 +5,7 @@ import React from "react";
 interface AnimatedIconProps {
   icon: React.ReactNode;
   count: number;
+  disabled?: boolean;
   onClick?: () => void;
   isActive?: boolean;
   isShare?: boolean;
@@ -16,11 +17,12 @@ const AnimatedIcon: React.FC<AnimatedIconProps> = ({
   onClick,
   isActive = false,
   isShare = false,
+  disabled = false,
 }) => {
   return (
     <div
       className='flex items-center gap-x-2 cursor-pointer select-none'
-      onClick={onClick}
+      onClick={disabled ? undefined : onClick}
     >
       <div className='relative'>
         <AnimatePresence>

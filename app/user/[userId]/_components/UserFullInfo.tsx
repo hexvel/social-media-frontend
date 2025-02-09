@@ -41,7 +41,7 @@ export const UserFullInfo = ({ user, isOpen, onClose }: UserFullInfoProps) => {
           <div className='grid grid-cols-1 md:grid-cols-2 gap-4'>
             <InfoItem
               icon={<User2 className='h-5 w-5' />}
-              label='Display name'
+              label='Username'
               value={`@${user.username}` || "Not specified"}
             />
             <InfoItem

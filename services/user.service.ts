@@ -11,6 +11,7 @@ export const userApi = api.injectEndpoints({
       }),
       providesTags: (result, error, id) => [{ type: "User", id }],
     }),
+
     getProfileUser: builder.query<IUser, void>({
       query: () => ({
         url: "/users.me",

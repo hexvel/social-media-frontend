@@ -11,13 +11,14 @@ export function useLikes(post_id: number) {
   const [likes, setLikes] = useState(0);
   const [isLiked, setIsLiked] = useState(false);
 
-  const { data: likesData, refetch } = useGetLikesQuery(
-    { post_id },
-    { skip: !post_id },
-  );
+  const {
+    data: likesData,
+    refetch,
+    isLoading,
+  } = useGetLikesQuery({ post_id }, { skip: !post_id });
 
-  const [addLike] = useAddLikeMutation();
-  const [removeLike] = useRemoveLikeMutation();
+  const [addLike, { isLoading: isAddingLike }] = useAddLikeMutation();
+  const [removeLike, { isLoading: isRemovingLike }] = useRemoveLikeMutation();
 
   useEffect(() => {
     if (likesData) {
@@ -44,5 +45,11 @@ export function useLikes(post_id: number) {
       .catch(error => console.error("Failed to remove like:", error));
   }, [removeLike, post_id, refetch]);
 
-  return { likes, isLiked, handleAddLike, handleRemoveLike };
+  return {
+    likes,
+    isLiked,
+    handleAddLike,
+    handleRemoveLike,
+    isLoading: isAddingLike || isRemovingLike,
+  };
 }

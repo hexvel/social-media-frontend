@@ -7,7 +7,7 @@ export const UserHeader = () => {
   const router = useRouter();
 
   return (
-    <div className='flex justify-between items-center px-4 bg-zinc-900'>
+    <div className='flex justify-between items-center px-4 bg-primary-theme'>
       <button className='text-white' onClick={() => router.back()}>
         <ArrowLeft className='h-6 w-6' />
       </button>

@@ -16,6 +16,11 @@ export const UserPosts = ({ userId }: { userId: string }) => {
 
   return (
     <div className='flex flex-col gap-4'>
+      {posts?.length === 0 && (
+        <div className='flex items-center justify-center h-full'>
+          <h2 className='text-2xl text-gray-500'>Posts not found</h2>
+        </div>
+      )}
       {posts?.map(post => (
         <Post key={post.id} {...post} />
       ))}

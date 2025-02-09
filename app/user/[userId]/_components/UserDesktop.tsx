@@ -22,7 +22,7 @@ export const UserDesktop = ({ user, onInfoClick }: UserProps) => {
         </div>
         <div className='ml-40 flex justify-between items-start'>
           <UserInfo user={user} onInfoClick={onInfoClick} />
-          <UserActions />
+          <UserActions userId={user.id} />
         </div>
       </div>
     </div>

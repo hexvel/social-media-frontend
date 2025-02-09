@@ -29,6 +29,14 @@ export const postApi = api.injectEndpoints({
       }),
       invalidatesTags: [{ type: "Post", id: "LIST" }],
     }),
+    deletePost: builder.mutation<IPost, { id: number }>({
+      query: ({ id }) => ({
+        url: "/posts.delete",
+        method: "DELETE",
+        body: { id },
+      }),
+      invalidatesTags: [{ type: "Post", id: "LIST" }],
+    }),
     getPostById: builder.query({
       query: id => ({ url: `/posts.getById`, params: { id } }),
       keepUnusedDataFor: 300,
@@ -38,7 +46,11 @@ export const postApi = api.injectEndpoints({
   overrideExisting: false,
 });
 
-export const { useGetPostsQuery, useGetPostByIdQuery, useCreatePostMutation } =
-  postApi;
+export const {
+  useGetPostsQuery,
+  useGetPostByIdQuery,
+  useCreatePostMutation,
+  useDeletePostMutation,
+} = postApi;
 
 export const { getPostById, getPosts } = postApi.endpoints;

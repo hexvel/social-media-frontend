@@ -41,10 +41,12 @@ export const User = ({ userId }: { userId: string }) => {
   if (isLoading) return <FullscreenLoader />;
   if (!user) return <div>User not found</div>;
 
+  console.log(user);
+
   const sharedProps = {
     user: {
       ...user,
-      avatar: user.avatar || undefined,
+      avatar: user.avatar || "/avatar.jpg",
       bio: user.bio || undefined,
     },
     onInfoClick: () => setIsInfoOpen(true),
