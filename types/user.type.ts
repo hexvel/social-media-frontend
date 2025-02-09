@@ -9,4 +9,5 @@ export interface IUser {
   createdAt: string;
 }
 
-export interface IUserData extends Omit<IUser, "id" | "createdAt"> {}
+export interface IUserData
+  extends Omit<IUser, "id" | "createdAt" | "isVerified"> {}
