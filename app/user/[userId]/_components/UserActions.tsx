@@ -6,6 +6,7 @@ import {
   useDeleteFriendMutation,
   useGetStatsQuery,
 } from "@/services/friends.service";
+import { useGetProfileUserQuery } from "@/services/user.service";
 import { MoreHorizontal, UserMinus, UserPlus } from "lucide-react";
 import toast from "react-hot-toast";
 
@@ -16,6 +17,7 @@ interface UserActionsProps {
 
 export const UserActions = ({ isMobile = false, userId }: UserActionsProps) => {
   const { data: stats } = useGetStatsQuery();
+  const { data: profileUser } = useGetProfileUserQuery();
   const { followers, following, friends } = stats || {};
 
   const [addFriend, { isLoading }] = useAddFriendMutation();
@@ -46,9 +48,12 @@ export const UserActions = ({ isMobile = false, userId }: UserActionsProps) => {
 
   return (
     <div className='flex gap-2'>
-      <Button variant='secondary' className='cursor-pointer text-sm'>
-        Message
-      </Button>
+      {userId !== profileUser?.id && (
+        <Button variant='secondary' className='cursor-pointer text-sm'>
+          Message
+        </Button>
+      )}
+
       {isFriend && (
         <Button
           variant='secondary'
@@ -60,7 +65,7 @@ export const UserActions = ({ isMobile = false, userId }: UserActionsProps) => {
           Unfollow
         </Button>
       )}
-      {!isFriend && (
+      {!isFriend && userId !== profileUser?.id && (
         <Button
           variant='secondary'
           className='cursor-pointer'
@@ -68,9 +73,10 @@ export const UserActions = ({ isMobile = false, userId }: UserActionsProps) => {
           disabled={isLoading}
         >
           <UserPlus className='h-4 w-4' />
-          {isLoading ? "Accepting..." : "Accept request"}
+          {isLoading ? "Adding..." : "Add to friends"}
         </Button>
       )}
+
       <Button variant='secondary' size='icon' className='cursor-pointer'>
         <MoreHorizontal className='h-4 w-4' />
       </Button>
