@@ -5,7 +5,7 @@ export interface IUser {
   lastName: string;
   bio?: string | null;
   isVerified: boolean;
-  avatar?: string | null;
+  avatar?: string | undefined;
   createdAt: string;
 }
 

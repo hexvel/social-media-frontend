@@ -13,7 +13,7 @@ export default function UserAvatar({
   className,
   size = 48,
   gradientBorder,
-  src = "/avatar.jpg",
+  src,
 }: UserAvatarProps) {
   const imageSize = size - 8;
 
@@ -24,7 +24,7 @@ export default function UserAvatar({
           <div className='absolute inset-0 rounded-full bg-gradient-to-br from-purple-600 via-red-500 to-yellow-400 p-[2px]'>
             <div className='rounded-full bg-black p-1'>
               <Image
-                src={src}
+                src={src || "/avatar.jpg"}
                 alt='Profile Pic'
                 width={imageSize}
                 height={imageSize}
@@ -35,7 +35,7 @@ export default function UserAvatar({
         </div>
       ) : (
         <Image
-          src={src}
+          src={src || "/avatar.jpg"}
           alt='Profile Pic'
           width={imageSize}
           height={imageSize}
