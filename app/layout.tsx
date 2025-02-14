@@ -6,6 +6,7 @@ import { Toaster } from "react-hot-toast";
 
 import { AuthProvider } from "@/components/providers/AuthProvider";
 import { ThemeProvider } from "@/components/providers/ThemeProvider";
+import { TOASTER_CONSTANT } from "@/constants/toaster.contant";
 import "./globals.css";
 
 const robotoMono = Roboto({
@@ -45,17 +46,7 @@ export default async function RootLayout({
               disableTransitionOnChange
             >
               {children}
-              <Toaster
-                position='top-center'
-                reverseOrder={false}
-                toastOptions={{
-                  style: {
-                    backgroundColor: "#1a1a1a",
-                    color: "#fff",
-                  },
-                  duration: 1500,
-                }}
-              />
+              <Toaster {...TOASTER_CONSTANT} />
             </ThemeProvider>
           </AuthProvider>
         </ReduxProvider>

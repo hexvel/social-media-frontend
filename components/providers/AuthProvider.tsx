@@ -31,7 +31,6 @@ export function AuthProvider({ children }: AuthProviderProps) {
         const userData = await response.json();
         dispatch(setProfileUser(userData));
       } catch (error) {
-        console.error("Ошибка при получении данных пользователя:", error);
         dispatch(setProfileUser(null));
         router.push("/auth/login");
       } finally {

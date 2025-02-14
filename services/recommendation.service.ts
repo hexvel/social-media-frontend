@@ -3,9 +3,9 @@ import { IPost } from "@/types/post.type";
 
 export const recommendationsApi = api.injectEndpoints({
   endpoints: builder => ({
-    getRecommendationPosts: builder.query<{ post: IPost }[], void>({
+    getRecommendationPosts: builder.query<IPost[], void>({
       query: () => ({
-        url: "/recommendations.getPosts",
+        url: "/recommendations/getPosts",
         method: "GET",
       }),
       providesTags: [{ type: "Post", id: "LIST" }],

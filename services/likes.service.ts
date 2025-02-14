@@ -5,7 +5,7 @@ export const likesApi = api.injectEndpoints({
   endpoints: builder => ({
     addLike: builder.mutation<ILike, { post_id: number }>({
       query: body => ({
-        url: "/likes.add",
+        url: "/likes/add",
         method: "POST",
         body,
       }),
@@ -14,7 +14,7 @@ export const likesApi = api.injectEndpoints({
     }),
     removeLike: builder.mutation<ILike, { post_id: number }>({
       query: body => ({
-        url: "/likes.remove",
+        url: "/likes/remove",
         method: "DELETE",
         body,
       }),
@@ -23,7 +23,7 @@ export const likesApi = api.injectEndpoints({
     }),
     getLikes: builder.query<ILike, { post_id?: number }>({
       query: params => ({
-        url: "/likes.get",
+        url: "/likes/get",
         method: "POST",
         body: params,
       }),
@@ -47,4 +47,4 @@ export const likesApi = api.injectEndpoints({
 export const { useAddLikeMutation, useGetLikesQuery, useRemoveLikeMutation } =
   likesApi;
 
-export const { addLike, getLikes } = likesApi.endpoints;
+export const { addLike, getLikes, removeLike } = likesApi.endpoints;

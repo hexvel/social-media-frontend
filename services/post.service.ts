@@ -5,7 +5,7 @@ export const postApi = api.injectEndpoints({
   endpoints: builder => ({
     getPosts: builder.query<IPost[], { owner: string }>({
       query: ({ owner }) => ({
-        url: "/posts.get",
+        url: "/posts/get",
         params: { owner },
       }),
 
@@ -23,7 +23,7 @@ export const postApi = api.injectEndpoints({
     }),
     createPost: builder.mutation<IPost, IPostCreate>({
       query: data => ({
-        url: "/posts.create",
+        url: "/posts/create",
         method: "POST",
         body: data,
       }),
@@ -31,14 +31,14 @@ export const postApi = api.injectEndpoints({
     }),
     deletePost: builder.mutation<IPost, { id: number }>({
       query: ({ id }) => ({
-        url: "/posts.delete",
+        url: "/posts/delete",
         method: "DELETE",
         body: { id },
       }),
       invalidatesTags: [{ type: "Post", id: "LIST" }],
     }),
     getPostById: builder.query({
-      query: id => ({ url: `/posts.getById`, params: { id } }),
+      query: id => ({ url: `/posts/getById`, params: { id } }),
       keepUnusedDataFor: 300,
       providesTags: (_, __, id) => [{ type: "Post", id }],
     }),

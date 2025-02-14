@@ -5,21 +5,21 @@ export const friendsApi = api.injectEndpoints({
   endpoints: builder => ({
     getFollowers: builder.query<IUser[], void>({
       query: () => ({
-        url: "/friends.getFollowers",
+        url: "/friends/getFollowers",
         method: "GET",
       }),
       providesTags: ["Friends", { type: "Friends", id: "LIST" }],
     }),
     getFollowing: builder.query<IUser[], void>({
       query: () => ({
-        url: "/friends.getFollowing",
+        url: "/friends/getFollowing",
         method: "GET",
       }),
       providesTags: ["Friends", { type: "Friends", id: "LIST" }],
     }),
     getFriends: builder.query<IUser[], void>({
       query: () => ({
-        url: "/friends.get",
+        url: "/friends/get",
         method: "GET",
       }),
       providesTags: ["Friends", { type: "Friends", id: "LIST" }],
@@ -29,14 +29,14 @@ export const friendsApi = api.injectEndpoints({
       void
     >({
       query: () => ({
-        url: "/friends.getStats",
+        url: "/friends/getStats",
         method: "GET",
       }),
       providesTags: ["Friends", { type: "Friends", id: "LIST" }],
     }),
     addFriend: builder.mutation<void, { user_id: number }>({
       query: ({ user_id }) => ({
-        url: "/friends.add",
+        url: "/friends/add",
         method: "POST",
         body: { user_id },
       }),
@@ -49,7 +49,7 @@ export const friendsApi = api.injectEndpoints({
     }),
     deleteFriend: builder.mutation<void, { user_id: number }>({
       query: ({ user_id }) => ({
-        url: "/friends.delete",
+        url: "/friends/delete",
         method: "DELETE",
         body: { user_id },
       }),

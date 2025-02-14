@@ -13,18 +13,13 @@ import {
 import { useMobile } from "@/hooks/use-mobile";
 import { cn } from "@/lib/utils";
 import { useGetRecommendationPostsQuery } from "@/services/recommendation.service";
-import { useGetProfileUserQuery } from "@/services/user.service";
 import { PlusCircle } from "lucide-react";
-import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 export default function HomePage() {
   const { data: posts, isLoading } = useGetRecommendationPostsQuery();
-  const { data: profileUser } = useGetProfileUserQuery();
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const isMobile = useMobile();
-
-  const router = useRouter();
 
   if (isLoading) {
     return (
@@ -33,8 +28,6 @@ export default function HomePage() {
       </div>
     );
   }
-
-  if (!posts) return <div>No posts</div>;
 
   return (
     <main className='flex w-full min-w-0 gap-5'>
@@ -57,7 +50,7 @@ export default function HomePage() {
           </div>
         )}
 
-        {posts?.map(({ post }, index) => (
+        {posts?.map((post, index) => (
           <Post key={index} {...post} />
         ))}
       </div>

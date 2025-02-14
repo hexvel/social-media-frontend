@@ -2,19 +2,20 @@ import { cookies } from "next/headers";
 import { NextResponse } from "next/server";
 
 export async function GET() {
-  const cookieStore = await cookies();
-  const accessToken = cookieStore.get("accessToken");
-
-  if (!accessToken) {
-    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-  }
-
   try {
+    const cookieStore = await cookies();
+    const accessToken = cookieStore.get("accessToken");
+
+    if (!accessToken) {
+      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+    }
+
     const response = await fetch(
-      `${process.env.NEXT_PUBLIC_API_URL}/users.get`,
+      `${process.env.NEXT_PUBLIC_API_URL}/users/get`,
       {
         headers: {
           Authorization: `Bearer ${accessToken.value}`,
+          "Cache-Control": "no-cache",
         },
       },
     );
@@ -22,7 +23,7 @@ export async function GET() {
     if (!response.ok) {
       return NextResponse.json(
         { error: "Failed to fetch user" },
-        { status: 401 },
+        { status: response.status },
       );
     }
 

@@ -5,7 +5,7 @@ export const userApi = api.injectEndpoints({
   endpoints: builder => ({
     getUser: builder.query<IUser, string>({
       query: id => ({
-        url: `/users.get`,
+        url: `/users/get`,
         method: "GET",
         params: { owner: id },
       }),
@@ -14,7 +14,7 @@ export const userApi = api.injectEndpoints({
 
     getProfileUser: builder.query<IUser, void>({
       query: () => ({
-        url: "/users.me",
+        url: "/users/me",
         method: "GET",
       }),
       providesTags: ["ProfileUser"],

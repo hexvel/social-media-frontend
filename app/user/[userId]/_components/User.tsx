@@ -1,6 +1,6 @@
 "use client";
 
-import FullscreenLoader from "@/components/FullscreenLoader";
+import Loader from "@/components/Loader";
 import { CreatePostForm } from "@/components/posts/CreatePost";
 import { Button } from "@/components/ui/button";
 import {
@@ -32,10 +32,8 @@ export const User = ({ userId }: { userId: string }) => {
   const isMobile = useMobile();
   const [isDialogOpen, setIsDialogOpen] = useState(false);
 
-  if (isLoading) return <FullscreenLoader />;
+  if (isLoading) return <Loader />;
   if (!user) return <div>User not found</div>;
-
-  console.log(user);
 
   const sharedProps = {
     user: {
