@@ -57,7 +57,7 @@ export default function Header() {
         </div>
         <Link href={`/user/${user?.id}`}>
           <Image
-            src={user?.avatar || "/avatar.jpg"}
+            src={user?.avatar || "/default-avatar.png"}
             height={48}
             width={48}
             alt='Profile photo'

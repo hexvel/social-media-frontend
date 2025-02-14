@@ -12,6 +12,10 @@ const nextConfig: NextConfig = {
         hostname: "avatars.mds.yandex.net",
       },
       {
+        protocol: "https",
+        hostname: "cdn.hero.page",
+      },
+      {
         protocol: "http",
         hostname: "localhost",
       },
