@@ -12,7 +12,7 @@ export const UserDesktop = ({ user, onInfoClick }: UserProps) => {
   return (
     <div className='w-full'>
       <div
-        className='relative h-[200px] transition-all duration-1000 ease-in-out animate-gradient-x rounded-t-lg'
+        className='relative h-[200px] animate-gradient-x rounded-t-lg'
         style={{
           backgroundImage: backgroundGradient,
           backgroundSize: "400% 400%",

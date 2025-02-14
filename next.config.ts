@@ -7,18 +7,6 @@ const nextConfig: NextConfig = {
         protocol: "https",
         hostname: "sun9-19.userapi.com",
       },
-      {
-        protocol: "https",
-        hostname: "avatars.mds.yandex.net",
-      },
-      {
-        protocol: "https",
-        hostname: "cdn.hero.page",
-      },
-      {
-        protocol: "http",
-        hostname: "localhost",
-      },
     ],
   },
 };
