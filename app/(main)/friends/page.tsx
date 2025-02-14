@@ -24,7 +24,7 @@ export default function FriendsPage() {
   }
 
   return (
-    <div className='w-full px-4 py-8'>
+    <div className='w-full px-4'>
       <h1 className='text-3xl font-bold mb-8'>Friends</h1>
       <div className='space-y-4'>
         {friends.map(friend => (
@@ -35,11 +35,11 @@ export default function FriendsPage() {
             <div className='flex items-center space-x-4'>
               <div className='relative'>
                 <Image
-                  src={friend.avatar || ""}
+                  src={friend.avatar || "/default-avatar.png"}
                   alt={friend.username || ""}
                   width={48}
                   height={48}
-                  className='rounded-full'
+                  className='rounded-full object-cover'
                 />
                 {/*
                 TODO: Добавить статус онлайн/офлайн
@@ -51,7 +51,10 @@ export default function FriendsPage() {
               </div>
 
               <div>
-                <h2 className='font-semibold'>{friend.username}</h2>
+                <h2 className='font-semibold'>
+                  {friend.firstName} {friend.lastName}
+                </h2>
+                <p className='text-sm text-gray-500'>@{friend.username}</p>
                 {/* TODO: Добавить статус онлайн/офлайн */}
                 {/* <p className='text-sm text-gray-500'>{friend.lastSeen}</p> */}
               </div>

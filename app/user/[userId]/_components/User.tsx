@@ -38,7 +38,7 @@ export const User = ({ userId }: { userId: string }) => {
   const sharedProps = {
     user: {
       ...user,
-      avatar: user.avatar || "/avatar.jpg",
+      avatar: user.avatar || "/default-avatar.png",
       bio: user.bio || undefined,
     },
     onInfoClick: () => setIsInfoOpen(true),
