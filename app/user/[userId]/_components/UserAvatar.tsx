@@ -17,7 +17,7 @@ export const UserAvatar = ({ user, size }: UserAvatarProps) => {
   return (
     <Avatar className={`${sizeClasses} ${borderClasses} rounded-full`}>
       <AvatarImage
-        src={user.avatar || "/avatar.jpg"}
+        src={user.avatar || "/default-avatar.png"}
         alt={`${user.firstName} ${user.lastName}`}
       />
       <AvatarFallback>

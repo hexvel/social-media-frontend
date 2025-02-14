@@ -5,7 +5,9 @@ import { UserAvatar } from "./UserAvatar";
 import { UserInfo } from "./UserInfo";
 
 export const UserDesktop = ({ user, onInfoClick }: UserProps) => {
-  const backgroundGradient = useImageColors(user.avatar || "/avatar.jpg");
+  const backgroundGradient = useImageColors(
+    user.avatar || "/default-avatar.png",
+  );
 
   return (
     <div className='w-full'>

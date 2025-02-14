@@ -77,7 +77,7 @@ export default function UserStats() {
                       <Avatar className='h-12 w-12 border-4 border-secondary-theme rounded-full'>
                         <AvatarImage
                           className='rounded-full'
-                          src={user.avatar || "/avatar.jpg"}
+                          src={user.avatar || "/default-avatar.png"}
                           alt={`${user.firstName} ${user.lastName}`}
                         />
 
