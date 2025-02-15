@@ -30,7 +30,7 @@ export const MediaPreviews = ({
   return (
     <div
       className={cn(
-        "flex flex-col gap-3",
+        "flex flex-col gap-3 z-1",
         attachments.length > 1 && "sm:grid sm:grid-cols-2",
       )}
     >

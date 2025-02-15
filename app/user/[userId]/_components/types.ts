@@ -1,10 +1,6 @@
+import { IUser } from "@/types/user.type";
+
 export interface UserProps {
-  user: {
-    id: number;
-    firstName: string;
-    lastName: string;
-    avatar?: string;
-    bio?: string;
-  };
+  user: IUser;
   onInfoClick: () => void;
 }

@@ -1,12 +1,9 @@
-import { truncateText } from "@/lib/utils";
-import { Info } from "lucide-react";
+import { cn, truncateText } from "@/lib/utils";
+import { IUser } from "@/types/user.type";
+import { Info, VerifiedIcon } from "lucide-react";
 
 interface UserInfoProps {
-  user: {
-    firstName: string;
-    lastName: string;
-    bio?: string;
-  };
+  user: IUser;
   onInfoClick: () => void;
   isMobile?: boolean;
 }
@@ -23,7 +20,12 @@ export const UserInfo = ({
         : "space-y-2"
     }
   >
-    <div className={isMobile ? "flex items-center justify-center gap-2" : ""}>
+    <div
+      className={cn(
+        isMobile ? "flex items-center justify-center gap-2" : "",
+        user.isVerified && "flex items-center gap-2",
+      )}
+    >
       <h2
         className={`${
           isMobile ? "text-xl" : "text-2xl"
@@ -31,6 +33,9 @@ export const UserInfo = ({
       >
         {user.firstName} {user.lastName}
       </h2>
+      <span>
+        {user.isVerified && <VerifiedIcon size={20} className='fill-sky-600' />}
+      </span>
     </div>
     {user.bio && (
       <p className={`${isMobile ? "mt-2 text-sm" : ""} text-zinc-400`}>

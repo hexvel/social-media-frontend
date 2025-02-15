@@ -5,7 +5,7 @@ import { useLikes } from "@/hooks/use-likes";
 import { formatter } from "@/lib/utils";
 import { useGetProfileUserQuery } from "@/services/user.service";
 import type { IPost } from "@/types/post.type";
-import { BadgeCheck, Heart, MessageSquare, Share2 } from "lucide-react";
+import { Heart, MessageSquare, Share2, VerifiedIcon } from "lucide-react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useCallback, useMemo, useState } from "react";
@@ -55,7 +55,7 @@ export default function Post({
                 {author.firstName} {author.lastName}
               </Link>
               {author.isVerified && (
-                <BadgeCheck size={20} className='text-blue-500' />
+                <VerifiedIcon size={20} className='fill-sky-600' />
               )}
             </div>
             <span
@@ -105,10 +105,12 @@ export default function Post({
         />
       </div>
       {fullScreenImage && (
-        <FullScreenImage
-          url={fullScreenImage}
-          onClose={() => setFullScreenImage(null)}
-        />
+        <div className='fixed inset-0 flex items-center justify-center z-10'>
+          <FullScreenImage
+            url={fullScreenImage}
+            onClose={() => setFullScreenImage(null)}
+          />
+        </div>
       )}
     </div>
   );

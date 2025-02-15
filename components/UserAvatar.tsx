@@ -1,13 +1,12 @@
-import { useImageColors } from "@/hooks/image-colors";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
 
 interface UserAvatarProps {
-  avatarUrl?: string | null | undefined;
   size?: number;
   className?: string;
   gradientBorder?: boolean;
-  src?: string | undefined;
+  src?: string;
+  onClick?: () => void;
 }
 
 export default function UserAvatar({
@@ -15,20 +14,15 @@ export default function UserAvatar({
   size = 48,
   gradientBorder,
   src,
+  onClick,
 }: UserAvatarProps) {
   const imageSize = size - 8;
-  const backgroundGradient = useImageColors(src || "/default-avatar.png");
 
   return (
     <div className={cn("flex flex-col items-center", className)}>
       {gradientBorder ? (
         <div className='relative mb-2' style={{ height: size, width: size }}>
-          <div
-            className='absolute inset-0 rounded-full animate-gradient-x p-[2px]'
-            style={{
-              background: backgroundGradient,
-            }}
-          >
+          <div className='absolute inset-0 rounded-full bg-gradient-to-br from-blue-500 via-purple-500 to-pink-500 p-[2px] shadow-[0_0_15px_rgba(168,85,247,0.3)]'>
             <div className='rounded-full bg-black p-1'>
               <Image
                 src={src || "/default-avatar.png"}
@@ -36,6 +30,7 @@ export default function UserAvatar({
                 width={imageSize}
                 height={imageSize}
                 className='rounded-full object-cover select-none'
+                onClick={onClick}
               />
             </div>
           </div>
@@ -47,6 +42,7 @@ export default function UserAvatar({
           width={imageSize}
           height={imageSize}
           className='rounded-full object-cover mb-2 select-none'
+          onClick={onClick}
         />
       )}
     </div>

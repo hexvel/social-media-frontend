@@ -68,7 +68,7 @@ export default {
         sm: "calc(var(--radius) - 4px)",
       },
       animation: {
-        "gradient-x": "animatedgradient 10s ease infinite alternate",
+        "gradient-x": "animatedgradient 6s ease infinite alternate",
       },
     },
   },

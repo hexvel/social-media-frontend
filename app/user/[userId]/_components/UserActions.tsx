@@ -77,9 +77,7 @@ export const UserActions = ({ isMobile = false, userId }: UserActionsProps) => {
         </Button>
       )}
 
-      <Button variant='secondary' size='icon' className='cursor-pointer'>
-        <MoreHorizontal className='h-4 w-4' />
-      </Button>
+      <MoreHorizontal className='h-4 w-4 cursor-pointer' />
     </div>
   );
 };

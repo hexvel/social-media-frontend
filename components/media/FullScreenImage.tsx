@@ -30,7 +30,7 @@ export default function FullScreenImage({
 
   return (
     <div
-      className={`fixed inset-0 z-[55555] flex items-center justify-center backdrop-blur-md transition-opacity duration-500 ${
+      className={`fixed inset-0 flex items-center justify-center backdrop-blur-md transition-opacity duration-500 ${
         loaded && !closing ? "opacity-100" : "opacity-0"
       }`}
       onClick={handleClose}
@@ -56,9 +56,9 @@ export default function FullScreenImage({
             e.stopPropagation();
             handleClose();
           }}
-          className='absolute right-6 top-6 z-10 rounded-full bg-black/50 p-2 text-white transition-colors hover:bg-black/70 pointer-events-auto'
+          className='absolute right-6 top-6 z-10 rounded-full bg-black/50 p-2 text-white transition-colors hover:bg-black/70 pointer-events-auto cursor-pointer'
         >
-          <X />
+          <X size={24} />
         </button>
       </div>
     </div>

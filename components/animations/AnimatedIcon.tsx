@@ -24,7 +24,7 @@ const AnimatedIcon: React.FC<AnimatedIconProps> = ({
       className='flex items-center gap-x-2 cursor-pointer select-none'
       onClick={disabled ? undefined : onClick}
     >
-      <div className='relative'>
+      <div className='relative z-1'>
         <AnimatePresence>
           {isActive && (
             <motion.div
