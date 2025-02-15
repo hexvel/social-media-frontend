@@ -7,6 +7,10 @@ const nextConfig: NextConfig = {
         protocol: "https",
         hostname: "sun9-19.userapi.com",
       },
+      {
+        protocol: "https",
+        hostname: "cdn-images.dzcdn.net",
+      },
     ],
   },
 };

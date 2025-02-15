@@ -3,6 +3,7 @@
 import FullScreenImage from "@/components/media/FullScreenImage";
 import UserAvatar from "@/components/UserAvatar";
 import { useImageColors } from "@/hooks/image-colors";
+import { cn } from "@/lib/utils";
 import { useCallback, useState } from "react";
 import type { UserProps } from "./types";
 import { UserActions } from "./UserActions";
@@ -14,7 +15,7 @@ export const UserDesktop = ({ user, onInfoClick }: UserProps) => {
     user.avatar || "/default-avatar.png",
   );
 
-  const handleImageClick = useCallback((url: string) => {
+  const handleImageClick = useCallback((url: string | null) => {
     setFullScreenImage(url);
   }, []);
 
@@ -31,12 +32,10 @@ export const UserDesktop = ({ user, onInfoClick }: UserProps) => {
         <div className='absolute -top-16 left-6'>
           <UserAvatar
             src={user.avatar}
-            gradientBorder
+            gradientBorder={user.isVerified}
             size={120}
-            className='mb-4 w-32 h-32 cursor-pointer'
-            onClick={() =>
-              handleImageClick(user.avatar || "/default-avatar.png")
-            }
+            className={cn("mb-4 w-32 h-32", user.avatar && "cursor-pointer")}
+            onClick={() => handleImageClick(user.avatar || null)}
           />
         </div>
         <div className='ml-40 flex justify-between items-start'>

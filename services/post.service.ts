@@ -3,7 +3,7 @@ import { IPost, IPostCreate } from "@/types/post.type";
 
 export const postApi = api.injectEndpoints({
   endpoints: builder => ({
-    getPosts: builder.query<IPost[], { owner: string }>({
+    getPosts: builder.query<IPost[], { owner: string | number }>({
       query: ({ owner }) => ({
         url: "/posts/get",
         params: { owner },
