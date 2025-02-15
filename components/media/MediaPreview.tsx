@@ -47,12 +47,13 @@ interface MediaPreviewProps {
 const MediaPreview = ({ media, onClick }: MediaPreviewProps) => {
   if (media.type === "IMAGE") {
     return (
-      <div className='relative aspect-[16/10] w-full overflow-hidden rounded-xl'>
+      <div className='relative w-full overflow-hidden rounded-xl'>
         <Image
           src={media.url}
           alt='Attachment'
-          fill
-          className='cursor-pointer select-none object-cover transition-transform hover:scale-105'
+          width={1920}
+          height={1080}
+          className='cursor-pointer select-none object-contain w-full h-auto transition-transform hover:scale-105'
           onClick={() => onClick(media.url)}
           sizes='(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw'
         />

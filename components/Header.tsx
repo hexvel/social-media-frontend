@@ -11,9 +11,12 @@ import {
 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import { useState } from "react";
+import { NotificationsDropdown } from "./NotificationsDropdown";
 
 export default function Header() {
   const { data: user } = useGetProfileUserQuery();
+  const [isNotificationsOpen, setIsNotificationsOpen] = useState(false);
 
   return (
     <header className='hidden xl:flex w-full justify-between py-4 px-8 bg-primary-theme/60'>
@@ -51,9 +54,16 @@ export default function Header() {
         <div className='bg-primary-theme p-3 rounded-md cursor-pointer active:scale-95 transition-transform shadow-lg'>
           <SettingsIcon size={24} color='#6f7376' />
         </div>
-        <div className='relative bg-primary-theme p-3 rounded-md cursor-pointer active:scale-95 transition-transform shadow-lg'>
-          <div className='h-2 w-2 bg-red-600 rounded-full absolute top-0 right-0' />
-          <Bell size={24} color='#6f7376' />
+        <div className='relative'>
+          <div
+            className='relative bg-primary-theme p-3 rounded-md cursor-pointer active:scale-95 transition-transform shadow-lg hover:bg-secondary-theme/10'
+            onClick={() => setIsNotificationsOpen(!isNotificationsOpen)}
+          >
+            <div className='h-2 w-2 bg-red-600 rounded-full absolute top-0 right-0' />
+            <Bell size={24} color='#6f7376' />
+          </div>
+
+          <NotificationsDropdown isOpen={isNotificationsOpen} />
         </div>
         <Link href={`/user/${user?.id}`}>
           <Image

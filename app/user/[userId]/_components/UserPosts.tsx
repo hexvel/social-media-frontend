@@ -14,6 +14,8 @@ export const UserPosts = ({ userId }: { userId: string }) => {
       </div>
     );
 
+  console.log(posts);
+
   return (
     <div className='flex flex-col gap-4'>
       {posts?.length === 0 && (
