@@ -1,10 +1,14 @@
 import { truncateText } from "@/lib/utils";
-import { useGetFollowersQuery } from "@/services/friends.service";
-import { Loader2, VerifiedIcon } from "lucide-react";
+import {
+  useAddFriendMutation,
+  useGetFollowersQuery,
+} from "@/services/friends.service";
+import { Loader2 } from "lucide-react";
 import UserAvatar from "./UserAvatar";
 
 export default function FollowUsers() {
   const { data: followUsers, isLoading } = useGetFollowersQuery();
+  const [addFriend, { isLoading: isAddingFriend }] = useAddFriendMutation();
 
   if (isLoading)
     return (
@@ -35,15 +39,21 @@ export default function FollowUsers() {
                   <div>
                     <p className='line-clamp-1 flex items-center gap-x-2 break-all font-medium cursor-default'>
                       {truncateText(`${user.firstName} ${user.lastName}`, 12)}
-                      <VerifiedIcon className='size-5 fill-sky-600' />
                     </p>
                     <p className='line-clamp-1 break-all text-muted-foreground cursor-default'>
                       {truncateText(`@${user.username}`, 12)}
                     </p>
                   </div>
                 </div>
-                <button className='h-10 px-4 border border-secondary-theme text-secondary-theme border-double rounded-3xl font-medium hover:bg-secondary-theme hover:text-dark transition-colors select-none'>
-                  Follow
+                <button
+                  className='h-10 px-4 border border-secondary-theme text-secondary-theme border-double rounded-3xl font-medium hover:bg-secondary-theme hover:text-dark transition-colors select-none cursor-pointer'
+                  onClick={() => addFriend({ user_id: user.id })}
+                >
+                  {isAddingFriend ? (
+                    <Loader2 className='size-4 animate-spin' />
+                  ) : (
+                    "Follow"
+                  )}
                 </button>
               </div>
             ))}

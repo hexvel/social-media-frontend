@@ -11,11 +11,10 @@ export function useLikes(post_id: number) {
   const [likes, setLikes] = useState(0);
   const [isLiked, setIsLiked] = useState(false);
 
-  const {
-    data: likesData,
-    refetch,
-    isLoading,
-  } = useGetLikesQuery({ post_id }, { skip: !post_id });
+  const { data: likesData, refetch } = useGetLikesQuery(
+    { post_id },
+    { skip: !post_id },
+  );
 
   const [addLike, { isLoading: isAddingLike }] = useAddLikeMutation();
   const [removeLike, { isLoading: isRemovingLike }] = useRemoveLikeMutation();

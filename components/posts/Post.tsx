@@ -1,15 +1,18 @@
 "use client";
 
 import UserAvatar from "@/components/UserAvatar";
+import { useComments } from "@/hooks/use-comments";
 import { useLikes } from "@/hooks/use-likes";
 import { formatter } from "@/lib/utils";
 import { useGetProfileUserQuery } from "@/services/user.service";
 import type { IPost } from "@/types/post.type";
+import { AnimatePresence } from "framer-motion";
 import { Heart, MessageSquare, Share2, VerifiedIcon } from "lucide-react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useCallback, useMemo, useState } from "react";
 import AnimatedIcon from "../animations/AnimatedIcon";
+import CommentSection from "../comments/CommentSection";
 import FullScreenImage from "../media/FullScreenImage";
 import { MediaPreviews } from "../media/MediaPreview";
 import PostMoreButton from "./PostMoreButton";
@@ -23,16 +26,24 @@ export default function Post({
 }: IPost) {
   const { likes, isLiked, handleAddLike, handleRemoveLike, isLoading } =
     useLikes(id);
+  const {
+    comments,
+    handleAddComment,
+    handleRemoveComment,
+    isCreatingComment,
+    isDeletingComment,
+  } = useComments(id);
   const [fullScreenImage, setFullScreenImage] = useState<string | null>(null);
   const router = useRouter();
   const { data: profileUser } = useGetProfileUserQuery();
+  const [isCommentsOpen, setIsCommentsOpen] = useState(false);
 
   const handleImageClick = useCallback((url: string) => {
     setFullScreenImage(url);
   }, []);
 
   const formattedDate = useMemo(
-    () => formatter.format(new Date(createdAt)),
+    () => formatter.format(new Date(createdAt)).replace(",", ""),
     [createdAt],
   );
 
@@ -93,8 +104,8 @@ export default function Post({
           />
           <AnimatedIcon
             icon={<MessageSquare size={24} />}
-            count={1000}
-            onClick={() => {}}
+            count={comments.length}
+            onClick={() => setIsCommentsOpen(!isCommentsOpen)}
           />
         </div>
         <AnimatedIcon
@@ -104,6 +115,20 @@ export default function Post({
           isShare={true}
         />
       </div>
+
+      <AnimatePresence>
+        {isCommentsOpen && (
+          <CommentSection
+            postId={id}
+            comments={comments}
+            onAddComment={handleAddComment}
+            onRemoveComment={handleRemoveComment}
+            isCreating={isCreatingComment}
+            isDeleting={isDeletingComment}
+          />
+        )}
+      </AnimatePresence>
+
       {fullScreenImage && (
         <div className='fixed inset-0 flex items-center justify-center z-10'>
           <FullScreenImage

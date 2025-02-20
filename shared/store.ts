@@ -1,4 +1,5 @@
 import authReducer from "@/features/auth/authSlice";
+import { commentSlice } from "@/features/comments/commentSlice";
 import { friendSlice } from "@/features/friends/friendSlice";
 import { likeSlice } from "@/features/likes/likeSlice";
 import { postSlice } from "@/features/posts/postSlice";
@@ -16,6 +17,7 @@ const store = configureStore({
     [postSlice.reducerPath]: postSlice.reducer,
     [likeSlice.reducerPath]: likeSlice.reducer,
     [friendSlice.reducerPath]: friendSlice.reducer,
+    [commentSlice.reducerPath]: commentSlice.reducer,
     auth: authReducer,
   },
   middleware: getDefaultMiddleware =>
