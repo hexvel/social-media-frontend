@@ -3,7 +3,7 @@ import { IPost } from "@/types/post.type";
 import { createSlice } from "@reduxjs/toolkit";
 
 interface InitialState {
-  recommendations: { post: IPost }[];
+  recommendations: IPost[];
 }
 
 const initialState: InitialState = {
