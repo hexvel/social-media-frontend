@@ -11,17 +11,22 @@ import {
 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { NotificationsDropdown } from "./NotificationsDropdown";
 
 export default function Header() {
   const { data: user } = useGetProfileUserQuery();
   const [isNotificationsOpen, setIsNotificationsOpen] = useState(false);
+  const router = useRouter();
 
   return (
     <header className='hidden xl:flex w-full justify-between py-4 px-8 bg-primary-theme/60'>
       <div className='flex items-center gap-x-2'>
-        <div className='bg-secondary-theme p-3 rounded-md cursor-pointer active:scale-95 transition-transform'>
+        <div
+          className='bg-secondary-theme p-3 rounded-md cursor-pointer active:scale-95 transition-transform'
+          onClick={() => router.push("/")}
+        >
           <PencilRulerIcon size={24} color='black' />
         </div>
         <div className='flex items-center gap-x-1 p-3 bg-primary-theme rounded-md shadow-md'>

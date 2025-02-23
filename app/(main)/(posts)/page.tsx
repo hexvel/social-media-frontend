@@ -14,12 +14,20 @@ import { useMobile } from "@/hooks/use-mobile";
 import { cn } from "@/lib/utils";
 import { useGetRecommendationPostsQuery } from "@/services/recommendation.service";
 import { PlusCircle } from "lucide-react";
-import { useState } from "react";
+import { useMemo, useState } from "react";
 
 export default function HomePage() {
   const { data: posts, isLoading } = useGetRecommendationPostsQuery();
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const isMobile = useMobile();
+
+  const sortedPosts = useMemo(() => {
+    if (!posts) return [];
+    return [...posts].sort(
+      (a, b) =>
+        new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime(),
+    );
+  }, [posts]);
 
   if (isLoading) {
     return (
@@ -29,12 +37,10 @@ export default function HomePage() {
     );
   }
 
-  console.log(posts);
-
   return (
     <main className='flex w-full min-w-0 gap-5'>
       <div className='flex flex-col items-start w-full min-w-0 space-y-5'>
-        {posts?.length === 0 && (
+        {sortedPosts.length === 0 && (
           <div className='flex flex-col items-center justify-between w-full space-y-5'>
             <h2 className='text-2xl text-gray-500'>Posts not found</h2>
             <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
@@ -52,7 +58,7 @@ export default function HomePage() {
           </div>
         )}
 
-        {posts?.map(post => (
+        {sortedPosts.map(post => (
           <Post key={post.id} {...post} />
         ))}
       </div>

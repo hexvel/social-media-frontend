@@ -9,11 +9,15 @@ const nextConfig: NextConfig = {
       },
       {
         protocol: "https",
-        hostname: "cdn-images.dzcdn.net",
+        hostname: "static.vecteezy.com",
       },
       {
         protocol: "https",
         hostname: "i.pinimg.com",
+      },
+      {
+        protocol: "https",
+        hostname: "wallpapers.com",
       },
     ],
   },

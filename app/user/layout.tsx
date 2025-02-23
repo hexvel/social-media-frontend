@@ -6,7 +6,7 @@ export default function UserLayout({ children }: { children: ReactNode }) {
   return (
     <div className='w-full flex min-h-screen flex-col'>
       <Header />
-      <div className='mx-auto flex w-full max-w-7xl gap-5 p-5'>
+      <div className='mx-auto flex w-full max-w-7xl gap-5 p-0 md:p-5'>
         <div className='sticky top-4 hidden space-y-3 rounded-lg px-3 py-5 shadow-sm sm:block'>
           <SidebarNavItems className='sticky top-4 hidden space-y-3 rounded-lg px-3 py-5 shadow-sm sm:block' />
         </div>
